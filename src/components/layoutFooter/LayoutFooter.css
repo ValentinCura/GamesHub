@@ -1,0 +1,82 @@
+.pageFooter {
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0%;
+    width: 100%;
+    background-color: #111111;
+}
+
+.group1 {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    justify-content: space-evenly;
+    margin: auto;
+    padding: 45px 0px;
+}
+
+@media (max-width: 815px) {
+    .group1 {
+        width: 90%;
+        grid-template-columns: repeat(1, 1fr);
+        grid-gap: 30px;
+        padding: 35px 0px;
+    }
+}
+
+.logoContainer {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.logoFooter{
+    width: 150px;
+    height: 150px;
+    border-radius: 80px;
+    background-color: white;
+}
+
+.group1 div figure img {
+    width: 250px;
+}
+
+.group1 div h2 {
+    color: white;
+    margin-bottom: 25px;
+    font-size: 20px;
+}
+
+.group1 div p,
+.group1 div p {
+    color: white;
+}
+
+.socials a {
+    display: inline-block;
+    text-decoration: none;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    color: white;
+    background-color: #1A191C;
+    text-align: center;
+    margin-right: 10px;
+    transition: all 300ms ease;
+}
+
+.socials a:hover {
+    color: red;
+}
+
+.group2 {
+    background-color: #1A191C;
+    padding: 15px 10px;
+    text-align: center;
+    color: white;
+}
+
+.group2 p {
+    color: white;
+}
