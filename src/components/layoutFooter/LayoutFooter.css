@@ -1,6 +1,6 @@
 .pageFooter {
     justify-content: space-around;
-    position: fixed;
+    height: auto;
     bottom: 0%;
     width: 100%;
     background-color: #111111;
