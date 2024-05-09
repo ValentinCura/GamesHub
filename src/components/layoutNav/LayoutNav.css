@@ -1,0 +1,19 @@
+.containerNav {
+    margin: 0px 30px;
+    width: 100%;
+    position: sticky;
+}
+
+.iconSize{
+    font-size: 15px;
+}
+
+a.nav-link{
+    padding: 0px;
+    padding-top: 5px;
+}
+
+.logo{
+    background-color: white;
+    border-radius: 50px;
+}
