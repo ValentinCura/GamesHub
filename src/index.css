@@ -12,6 +12,11 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+@font-face{
+  font-family:'Rubik';
+  src: url('../src/assets/fonts/Rubik/Rubik-VariableFont_wght.ttf') format('truetype');
+
+}
 
 a {
   font-weight: 500;
@@ -24,6 +29,7 @@ a:hover {
 
 body {
   margin: 0;
+  font-family: 'Rubik', 'sans-serif';
   display: flex;
   place-items: center;
   min-width: 320px;
