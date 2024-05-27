@@ -4,7 +4,7 @@ import './LoginPage.css'
 import { useNavigate } from 'react-router-dom';
 
 const LoginPage = () => {
-  const [errors,setErrors] = useState({
+  const [errors, setErrors] = useState({
     username: false,
     password: false,
   });
@@ -16,15 +16,15 @@ const LoginPage = () => {
 
   const loginHandler = (e) => {
     e.preventDefault();
-    if (!usernameRef.current.value){
+    if (!usernameRef.current.value) {
       usernameRef.current.focus();
-      setErrors({...errors, username:true})
+      setErrors({ ...errors, username: true })
       alert("Completaloooooooo");
       return;
     }
-    if (!passwordRef.current.value){
+    if (!passwordRef.current.value) {
       passwordRef.current.focus();
-      setErrors({...errors, password:true})
+      setErrors({ ...errors, password: true })
       alert("COMPLETA");
       return;
     }
@@ -36,18 +36,17 @@ const LoginPage = () => {
   return (
     <div className='loginForm'>
       <Form onSubmit={loginHandler}>
-        <Form.Group className="mb-3 text " controlId="formBasicEmail">
-          <Form.Label>Usuario</Form.Label>
-          <Form.Control ref={usernameRef} type="text" placeholder="Username" />
+        <h2>Iniciar Sesión</h2>
+        <Form.Group className="mb-3 formGroup" controlId="formBasicEmail">
+          <Form.Control ref={usernameRef} type="text" placeholder="Username" className='text' />
         </Form.Group>
-
-        <Form.Group className="mb-3 text" controlId="formBasicPassword">
-          <Form.Label>Contraseña</Form.Label>
-          <Form.Control ref={passwordRef} type="password" placeholder="Contraseña" />
+        <Form.Group className="mb-3 formGroup" controlId="formBasicPassword">
+          <Form.Control ref={passwordRef} type="password" placeholder="Contraseña" className='text' />
         </Form.Group>
-        <Button variant="dark" type="submit" >
+        <Button variant="dark" type="submit" className='sessionButton' >
           Iniciar Sesión
         </Button>
+        <a href="">¿Olvidaste la contraseña?</a>
       </Form>
     </div>
   )
