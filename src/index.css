@@ -24,19 +24,28 @@ a {
   text-decoration: inherit;
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: transparent; 
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: white; 
+  border-radius: 5px; 
+}
 
 body {
-  margin: 0;
+  /* margin: 0; */
   font-family: 'Rubik', 'sans-serif';
-  display: flex;
+  /* display: flex;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  min-height: 100vh; */
 }
 
-h1 {
+/* h1 {
   font-size: 3.2em;
   line-height: 1.1;
-}
+} */
 
 

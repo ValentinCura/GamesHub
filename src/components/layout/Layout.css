@@ -1,7 +1,10 @@
-#root {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-} 
+.layoutGrid{
+    display: grid;
+    grid-template-areas: 
+    "navbar"
+    "children"
+    "footer";
+    grid-template-columns:1fr ;
+    grid-template-rows: 80px 1fr auto ;
+}
+
