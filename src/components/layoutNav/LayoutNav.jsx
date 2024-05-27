@@ -52,7 +52,7 @@ const LayoutNav = () => {
     }
     return (
         <>
-            <Navbar bg="dark" data-bs-theme="dark">
+            <Navbar bg="dark" data-bs-theme="dark" className='fullNav'>
                 <Container fluid className='containerNav p-0'>
                     <Navbar.Brand onClick={handleHome}>
                         <img src="./src/assets/img/logo2.png" height='40' width='40' className='logo' />
