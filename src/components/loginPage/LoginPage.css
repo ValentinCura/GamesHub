@@ -1,5 +1,4 @@
 .loginForm {
-    grid-area: children;
     background-image: url('../../assets/img/imageCar.png');
     display: flex;
     height: 100vh;

@@ -1,5 +1,4 @@
 .pageFooter {
-    grid-area: footer;
     justify-content: space-around;
     height: auto;
     bottom: 0%;
