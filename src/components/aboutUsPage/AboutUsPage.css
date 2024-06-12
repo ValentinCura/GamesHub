@@ -10,14 +10,30 @@
 .background::before {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 60%;
+    top: 55%;
+    left: 67%;
     width: 450px;
     height: 300px;
     background: rgba(58, 117, 78, 0.3);
     filter: blur(50px);
     transform: translate(-50%, -50%);
-} 
+    border-radius: 40%;
+}
+
+.background::after {
+    content: '';
+    position: absolute;
+    top: 40%;
+    right: 60%;
+    width: 350px;
+    height: 250px;
+    background: rgba(56, 110, 80, 0.3); 
+    filter: blur(50px);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+}
+
+
 
 .aboutUs {
     color: white;
