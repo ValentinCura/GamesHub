@@ -1,34 +1,176 @@
-.background{
-    background-image: url('../../assets/img/gradiente.jpg');
-    background-size: cover;
-    display: flex;
-    height: auto;
+.background {
+    background-color: #252323;
+    height: 100vh;
     justify-content: center;
     align-items: center;
-}
-
-.container{
-    justify-content: center;
-    padding: 30px 0px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
-    color: black;
-    margin-top: 90px;
-
 }
 
-.imgAboutUs{
-    width: 500px;
+.background::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    width: 450px;
     height: 300px;
+    background: rgba(58, 117, 78, 0.3);
+    filter: blur(50px);
+    transform: translate(-50%, -50%);
+} 
+
+.aboutUs {
+    color: white;
+    display: flex;
+    width: 1100px;
+    height: 200px;
+    z-index: 40;
+    gap: 35px;
+}
+
+.moreInfo {
+    color: white;
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 30px;
+    cursor: pointer;
+    z-index: 40;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+
+.animate {
+    animation: bounce 1s infinite;
 }
 
 .visionMision{
-    width: 400px;
-    margin-top: 60px;
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
 }
 
+.texts{
+    display: flex;
+    flex-direction: column;
+    text-align: justify;
+}
+
+.img1{
+    top: 20%;
+    left: 80%;
+}
+
+.img2{
+    top: 55%;
+    left: 85%;
+    height: 82px;
+    width: 220px;
+
+}
+
+.img3{
+    top: 80%;
+    left: 75%;
+    height: 68px;
+    width: 180px;
+
+}
+
+.img4{
+    top: 15%;
+    right: 68%;
+
+
+}
+
+.img5{
+    top: 50%;
+    right: 83%;
+    height: 65px;
+    width: 180px;
+
+}
+
+.img6{
+    top: 76%;
+    right: 70%;
+    height: 80px;
+    width: 220px;
+
+}
+
+.img7{
+    top: 25%;
+    right: 90%;
+    height: 50px;
+    width: 130px;
+}
+
+.shadowPosition{
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
+    position: absolute;
+}
+
+.characteristics{
+    background-color: #141414;
+    height: 600px;
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+.charCards{
+    height: 345px;
+    width: 280px;
+    color: #f5f1ed;
+    text-align: center;
+}
+
+.charCards h3{
+    padding-top: 30px;
+}
+
+.charCards p{
+    padding-top: 15px;
+}
+
+.charCards i{
+    color: white;
+    font-size: 40px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    display: flex;
+}
+
+.charCards:hover .iconDiv{
+    background-color: #f3b025;
+}
+
+.iconDiv{
+    background-color: #252323;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    height: 85px;
+    width: 85px;
+    display: flex;
+    margin: auto;
+    transition: background-color 0.4s ease-in-out;
+}
 
 
 

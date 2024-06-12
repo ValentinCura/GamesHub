@@ -3,8 +3,8 @@ import './LayoutFooter.css'
 const LayoutFooter = () => {
     return (
         <>
-            <div class="pageFooter">
-                <div class="group1">
+            <div className="pageFooter">
+                <div className="group1">
                     <div className='logoContainer'>
                         <img src="./src/assets/img/LogoGamesHub.png" className='logoFooter' />
                     </div>
@@ -14,15 +14,15 @@ const LayoutFooter = () => {
                     </div>
                     <div>
                         <h2>SÍGUENOS</h2>
-                        <div class="socials">
-                            <a href="https://www.instagram.com/g4meshub/" target='blank'><i class="bi bi-instagram"></i></a>
-                            <a href="https://github.com/ValentinCura/GamesHub.git" target='blank'><i class="bi bi-github"></i></a>
-                            <a href="#"><i class="bi bi-whatsapp"></i></a>
-                            <a href="#"><i class="bi bi-envelope"></i></a>
+                        <div className="socials">
+                            <a href="https://www.instagram.com/g4meshub/" target='blank'><i className="bi bi-instagram"></i></a>
+                            <a href="https://github.com/ValentinCura/GamesHub.git" target='blank'><i className="bi bi-github"></i></a>
+                            <a href="#"><i className="bi bi-whatsapp"></i></a>
+                            <a href="#"><i className="bi bi-envelope"></i></a>
                         </div>
                     </div>
                 </div>
-                <div class="group2">
+                <div className="group2">
                     <p><small>&copy;2024 </small><b>GamesHub</b> - Grupo 2.</p>
                 </div>
             </div>
