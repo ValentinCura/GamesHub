@@ -52,5 +52,4 @@
 .hidden {
     transform: translateY(-200%) translateX(-50%);
     transition: transform 0.5s ease;
-    left:50%;
 }
