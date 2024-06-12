@@ -32,10 +32,8 @@
 
 }
 .logoFooter{
-    width: 150px;
-    height: 150px;
-    border-radius: 80px;
-    background-color: white;
+    width: 260px;
+    height: 140px;
 }
 
 .group1 div figure img {
@@ -67,7 +65,7 @@
 }
 
 .socials a:hover {
-    color: red;
+    color: #7F875E;
 }
 
 .group2 {
