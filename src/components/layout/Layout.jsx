@@ -5,11 +5,11 @@ import LayoutFooter from '../layoutFooter/LayoutFooter'
 
 const Layout = ({ children }) => {
   return (
-    <div className='layoutGrid'>
+    <>
       <LayoutNav />
       {children}
       <LayoutFooter />
-    </div>
+    </>
   )
 }
 

@@ -1,10 +1,1 @@
-.layoutGrid{
-    display: grid;
-    grid-template-areas: 
-    "navbar"
-    "children"
-    "footer";
-    grid-template-columns:1fr ;
-    grid-template-rows: 80px 1fr auto ;
-}
 
