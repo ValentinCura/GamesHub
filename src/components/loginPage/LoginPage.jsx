@@ -8,8 +8,12 @@ const LoginPage = () => {
     username: false,
     password: false,
   });
+
   const navigate = useNavigate()
 
+  const handleRegister = () => {
+    navigate("/register");
+}
 
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
@@ -31,22 +35,21 @@ const LoginPage = () => {
     navigate("/")
   }
 
-
-
   return (
     <div className='loginForm'>
       <Form onSubmit={loginHandler}>
         <h2>Iniciar Sesión</h2>
-        <Form.Group className="mb-3 formGroup" controlId="formBasicEmail">
-          <Form.Control ref={usernameRef} type="text" placeholder="Username" className='text' />
-        </Form.Group>
-        <Form.Group className="mb-3 formGroup" controlId="formBasicPassword">
-          <Form.Control ref={passwordRef} type="password" placeholder="Contraseña" className='text' />
-        </Form.Group>
+        <div className="mb-3 groupinput" controlId="formBasicEmail">
+          <input type="text" ref={usernameRef} placeholder="Usuario" name="" id="" />
+        </div>
+        <div className="mb-3 groupinput" controlId="formBasicEmail">
+          <input type="text" ref={passwordRef} placeholder="Contraseña" name="" id="" />
+          <a className='aText' href="">¿Olvidaste la contraseña?</a>
+        </div>
         <Button variant="dark" type="submit" className='sessionButton' >
           Iniciar Sesión
         </Button>
-        <a href="">¿Olvidaste la contraseña?</a>
+        <p className='registerPage' onClick={handleRegister}>¿No tienes cuenta? Registrate Aqui</p>
       </Form>
     </div>
   )
