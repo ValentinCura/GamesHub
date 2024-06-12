@@ -1,18 +1,30 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom';
+import './Register.css'
 
 const Register = () => {
+  const [showPass, setShowPass] = useState(false);
   const [errors, setErrors] = useState({
     username: false,
     password: false,
   });
   const navigate = useNavigate()
 
+  const handleLogin = () => {
+    navigate("/login")
+  }
 
+  const handleShowPass = () =>{
+    setShowPass(!showPass);
+    passwordRef.current.type = showPass ? 'password' : 'text';
+  }
+
+  const emailRef = useRef(null);
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
 
-  const loginHandler = (e) => {
+  const registerHandler = (e) => {
     e.preventDefault();
     if (!usernameRef.current.value) {
       usernameRef.current.focus();
@@ -26,9 +38,9 @@ const Register = () => {
       alert("Completar contraseña!");
       return;
     }
-    if (!emailRef.current.value){
+    if (!emailRef.current.value) {
       emailRef.current.focus();
-      setErrors({...errors, email: true})
+      setErrors({ ...errors, email: true })
       alert("Completar email!");
       return;
     }
@@ -36,22 +48,23 @@ const Register = () => {
   }
 
   return (
-    <div className='loginForm'>
-      <Form onSubmit={loginHandler}>
+    <div className='registerForm'>
+      <Form onSubmit={registerHandler}>
         <h2>Registrarse</h2>
-        <Form.Group className="mb-3 formGroup" controlId="formBasicEmail">
-          <Form.Control ref={usernameRef} type="text" placeholder="Username" className='text' />
-        </Form.Group>
-        <Form.Group className="mb-3 formGroup" controlId="formBasicPassword">
-          <Form.Control ref={passwordRef} type="password" placeholder="Contraseña" className='text' />
-        </Form.Group>
-        <Form.Group className="mb-3 formGroup">
-          <Form.Control ref={emailRef} type="email" placeholder='Email' className='text'></Form.Control>
-        </Form.Group>
+        <div className="mb-3 groupInputReg" controlId="formBasicEmail">
+          <input type="email" ref={emailRef} placeholder="Email" name="" id="" />
+        </div>
+        <div className="mb-3 groupInputReg" controlId="formBasicUser">
+          <input type="text" ref={usernameRef} placeholder="Usuario" name="" id="" />
+        </div>
+        <div className="mb-3 groupInputReg inputPass" controlId="formBasicPass">
+          <input type="password" ref={passwordRef} placeholder="Contraseña" name="" id=""/>
+          <i className={`bi ${showPass ? 'bi-eye-slash': 'bi-eye'}`} onClick={handleShowPass}/>
+        </div>
         <Button variant="dark" type="submit" className='sessionButton' >
-          Crear cuenta
+          Registrarse
         </Button>
-        <a href="">¿Ya tienes una cuenta, inicia sesión?</a>
+        <p className='loginPage' onClick={handleLogin}>¿Ya tienes una cuenta? Inicia Sesion Aqui</p>
       </Form>
     </div>
   )
