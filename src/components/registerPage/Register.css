@@ -1,6 +1,6 @@
-.loginForm {
-    grid-area: children;
+.registerForm {
     background-image: url('../../assets/img/imageCar.png');
+    background-size: cover;
     display: flex;
     height: 100vh;
     justify-content: center;
@@ -12,8 +12,8 @@ form {
 }
 
 .formGroup {
-    background-color: white;
-    opacity: 0.3;
+    background-color: transparent !important;
+
     border-radius: 50px;
 }
 
@@ -22,6 +22,7 @@ form {
     text-align: start;
     border-radius: 50px;
 }
+
 
 .sessionButton {
     border-radius: 50px;
@@ -32,4 +33,86 @@ form {
     color: black;
     border: none;
     transition: 500;
+    margin-top: 30px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.sessionButton:hover {
+    background-color: #7F875E;
+    color: white;
+
+}
+
+.groupInputReg {
+    width: 560px;
+    height: 50px;
+}
+
+.groupInputReg:focus {
+    border: none;
+}
+
+input {
+    color: white;
+    border: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 50px;
+    background-color: rgba(168, 164, 164, 0.3);
+    padding-left: 20px;
+}
+
+input::placeholder {
+    color: white;
+}
+
+input:focus {
+    outline: 1px solid rgba(168, 164, 164);
+    caret-color: rgba(168, 164, 164);
+}
+
+a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+.aText {
+    display: flex;
+    justify-content: end;
+    padding-right: 20px;
+    margin-top: 5px;
+    transition: color 0.3s ease-in-out;
+}
+
+.aText:hover {
+    color: rgb(199, 199, 199);
+}
+
+.loginPage {
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+}
+
+.loginPage:hover {
+    color: rgb(199, 199, 199);
+}
+
+.inputPass {
+    display: flex;
+    position: relative;
+}
+
+.inputPass i{
+    position:absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    right: 20px;
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    transition: color 0.3s ease-in-out;
+}
+
+.inputPass i:hover{
+    color: rgb(199, 199, 199);
 }
