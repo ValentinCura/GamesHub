@@ -65,7 +65,7 @@ const LayoutNav = () => {
         <nav className="navbar">
             <ul>
                 <a className="navbar-item" onClick={handleHome}>
-                    <img className='logo' src="./src/assets/img/logo2.png" alt="" />
+                    <img className='logo' src="./src/assets/img/LogoGamesHub.png" alt="" />
                 </a>
                 <li className="navbar-item navli1" onClick={handleProductsPage}>
                     <p>Productos</p>
@@ -78,10 +78,10 @@ const LayoutNav = () => {
                 </li>
             </ul>
             <ul>
-                <li className="navbar-item" onClick={handleBuysPage}>
+                <li className="navbar-item navli2" onClick={handleBuysPage}>
                     <p><i className="bi bi-cart iconSize" /></p>
                 </li>
-                <li className="navbar-item" onClick={handleLoginPage}>
+                <li className="navbar-item navli2" onClick={handleLoginPage}>
                     <p><i className="bi bi-person-circle iconSize" />Login</p>
                 </li>
             </ul>

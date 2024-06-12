@@ -19,11 +19,14 @@
     list-style: none;
     padding: 0px 25px;
     margin: 0;
-
 }
 
-.navli1 {
-    padding-top: 8px;
+ .navli1 {
+    padding-top: 12px;
+} 
+
+.navli2{
+    padding-top: 6px;
 }
 
 .iconSize {
@@ -43,10 +46,8 @@
 }
 
 .logo {
-    background-color: white;
-    border-radius: 50px;
-    width: 40px;
-    height: 40px;
+    width: 80px;
+    height: 45px;
 }
 
 .hidden {
