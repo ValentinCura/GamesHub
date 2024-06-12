@@ -6,9 +6,7 @@ const LayoutFooter = () => {
             <div class="pageFooter">
                 <div class="group1">
                     <div className='logoContainer'>
-                        
-                        <img src="./src/assets/img/logo2.png" className='logoFooter' />
-                        
+                        <img src="./src/assets/img/LogoGamesHub.png" className='logoFooter' />
                     </div>
                     <div>
                         <h2>SOBRE NOSOTROS</h2>
