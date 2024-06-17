@@ -1,0 +1,69 @@
+.textTitleCard{
+    font-size: 12px;
+}
+.background-products{
+    display: flex;
+    flex-direction: column;
+    background-image: url("../../assets/img/cardBg.jfif");
+    background-size: cover;
+}
+.cardContainer{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    margin: 200px 450px 0 450px;
+}
+.cardProductsCard {
+    margin: 7px;
+    width: 170px;
+    height: 350px;
+    padding: 0px;
+    z-index: 1;
+}
+
+.cardProductsCard:hover {
+    border: 1px solid black;
+    transition: 0.2s;
+    transform: scale(1.03);
+    z-index: 2;
+}
+
+
+.imgCard{
+    object-fit: cover;
+    transition: filter 0.3s ease;
+    height: 228px;
+    width: 168px; 
+}
+
+.cardProductsCard:hover img {
+    filter: brightness(130%) ;
+}
+
+.buttonShow{
+    margin-left: 40%;
+    margin-top: 5px;
+}
+
+
+.overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 168px;
+    height: 228px;
+    background-color: rgba(0, 0, 0, 0.5); /* Color de fondo semi-transparente */
+    opacity: 0; /* Inicialmente oculto */
+    transition: opacity 0.3s ease; /* Transición suave al mostrar/ocultar */
+    color: white;
+    text-align: center;
+    font-size: 25px;
+    padding-top: 75px; /* Ajusta el espaciado según tus necesidades */
+    font-family: "Jersey 25", sans-serif; 
+}
+
+.cardProductsCard:hover .overlay{
+    opacity: 1;
+}
