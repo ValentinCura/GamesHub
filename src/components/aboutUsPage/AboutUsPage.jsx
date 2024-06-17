@@ -42,15 +42,18 @@ const AboutUsPage = () => {
           </div>
         </section>
         <section className='moreInfo'>
-          <p>MÁS INFORMACIÓN</p>
-          <div className='animate' onClick={() => setChevron(true)}><i className="bi bi-chevron-compact-down"></i></div>
+
+          <div className='animate' onClick={() => setChevron(true)}>
+            <p>MÁS INFORMACIÓN</p>
+            <i className="bi bi-chevron-compact-down"></i>
+          </div>
         </section>
       </div>
       <section className='characteristics' ref={charRef}>
         <div className="charCards">
           <div className='iconDiv'><i className="bi bi-clock-history" /></div>
-            <h3>Acceso anticipado a juegos</h3>
-            <p>Descubre, juega e involúcrate con juegos mientras evolucionan. Sé el primero en obtener información sobre las próximas novedades y en formar parte del proceso.</p>
+          <h3>Acceso anticipado a juegos</h3>
+          <p>Descubre, juega e involúcrate con juegos mientras evolucionan. Sé el primero en obtener información sobre las próximas novedades y en formar parte del proceso.</p>
         </div>
         <div className="charCards ">
           <div className='iconDiv'><i className="bi bi-phone" /></div>
