@@ -6,6 +6,14 @@
     flex-direction: column;
     background-image: url("../../assets/img/cardBg.jfif");
     background-size: cover;
+    justify-content: center;
+    padding-top: 100px;
+}
+.searchBarDiv{
+    display: flex;
+
+    justify-content: center;
+    text-align: center;
 }
 .cardContainer{
     display: flex;
@@ -13,7 +21,7 @@
     justify-content: center;
     text-align: center;
     position: relative;
-    margin: 200px 450px 0 450px;
+    margin: 0 450px 0 450px;
 }
 .cardProductsCard {
     margin: 7px;
