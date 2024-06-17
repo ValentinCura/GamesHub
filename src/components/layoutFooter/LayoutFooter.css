@@ -50,7 +50,10 @@
 .group1 div p {
     color: white;
 }
-
+.socials {
+    display: flex;
+    gap: 10px;
+}
 .socials a {
     display: inline-block;
     text-decoration: none;
@@ -60,7 +63,6 @@
     color: white;
     background-color: #1A191C;
     text-align: center;
-    margin-right: 10px;
     transition: all 300ms ease;
 }
 
@@ -77,4 +79,5 @@
 
 .group2 p {
     color: white;
+    margin: 0px;
 }
