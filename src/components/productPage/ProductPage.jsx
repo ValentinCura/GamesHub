@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Card, ListGroup } from 'react-bootstrap';
 import './ProductPage.css'
 import SearchBar from '../searchBar/SearchBar';
+import FilterBar from '../filterBar/FilterBar';
 
 const ProductPage = () => {
   const [products, setProducts] = useState([]);
@@ -71,7 +72,7 @@ const ProductPage = () => {
   return (
     <div className='background-products'>
       <div className='searchBarDiv'><SearchBar onSearch={handleSearch} /> </div>
-
+      
       <div className='cardContainer'>
         {isLoading && <p>Loading products...</p>}
         {error && <p>Error: {error.message}</p>}

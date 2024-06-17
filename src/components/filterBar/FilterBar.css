@@ -1,0 +1,11 @@
+.filterContainer i{
+    font-size: 27px;
+    cursor: pointer;
+}
+
+.filterChecks{
+    position: absolute;
+    top: 20%;
+    left: 10%;
+    background-color: #252323;
+}
