@@ -11,6 +11,8 @@ const ProductPage = () => {
   const [error, setError] = useState(null);
   const [gamesSlice, setGamesSlice] = useState(12);
 
+
+
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true);
@@ -64,15 +66,25 @@ const ProductPage = () => {
       );
       setProducts(filteredProducts);
     }
-
-
-
   };
+    
+    const handleFilteredGames = (gameStyles) => {
+      const filteredProducts = products.filter(product =>
+        gameStyles.every(style => product.gameStyle.includes(style))
+      );
+      setProducts(filteredProducts)
+    }
+
+
+  
+
 
   return (
     <div className='background-products'>
-      <div className='searchBarDiv'><SearchBar onSearch={handleSearch} /> </div>
-      
+      <div className='searchContainer'>
+        <div className='filterBarDiv'><FilterBar products={products} onHandleFilteredGames={handleFilteredGames}/></div>
+        <div className='searchBarDiv'><SearchBar onSearch={handleSearch} /> </div>
+      </div>
       <div className='cardContainer'>
         {isLoading && <p>Loading products...</p>}
         {error && <p>Error: {error.message}</p>}

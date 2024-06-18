@@ -38,14 +38,5 @@ input:focus {
     caret-color: rgba(168, 164, 164);
 }
 
-.searchContainer{
-    display: flex;
-    justify-content: center;
-    flex-direction: row;
-    align-items: center;
-    color: white;
-}
 
-.filterBarDiv{
-    padding: 0px 15px 10px 0px;
-}
+
