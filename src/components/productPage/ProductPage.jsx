@@ -1,49 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Button, Card, ListGroup } from 'react-bootstrap';
 import './ProductPage.css'
 import SearchBar from '../searchBar/SearchBar';
 import FilterBar from '../filterBar/FilterBar';
+import {ProductContext} from '../context/ContextProvider'
 
 const ProductPage = () => {
-  const [products, setProducts] = useState([]);
-  const [resetData, setResetData] = useState(false)
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
   const [gamesSlice, setGamesSlice] = useState(12);
-
-
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      setError(null);
-
-      try {
-        const response = await fetch('http://localhost:8000/products', {
-          headers: {
-            accept: 'application/json',
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const productData = await response.json();
-        const productMapped = productData.map((product) => ({
-          ...product,
-        })).sort((a, b) => b.id - a.id);
-        setProducts(productMapped);
-      } catch (error) {
-        console.error('Error fetching products:', error);
-        setError(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [resetData]);
+  const {products, isLoading, error} = useContext(ProductContext);
 
   const gamesToShow = products.slice(0, gamesSlice);
 
@@ -74,10 +38,6 @@ const ProductPage = () => {
       );
       setProducts(filteredProducts)
     }
-
-
-  
-
 
   return (
     <div className='background-products'>
