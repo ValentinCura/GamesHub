@@ -3,9 +3,52 @@
     cursor: pointer;
 }
 
-.filterChecks{
+.filterContainer {
+    position: relative;
+}
+
+.filterChecks {
     position: absolute;
-    top: 20%;
-    left: 10%;
-    background-color: #252323;
+    top: 20%; 
+    left: -100%; 
+    transition: left 0.5s ease-in-out;
+    background-color: rgb(26, 26, 26);
+    color: white;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(104, 104, 104, 0.1);
+    border-radius: 8px;
+}
+
+.slide-in {
+    left: 70px; 
+}
+
+.slide-out {
+    left: -100%; 
+}
+
+
+
+.styleFilter{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.labelCheck{
+    display: flex;
+    align-items: center; 
+    margin-bottom: 8px; 
+    width: 100%; 
+}
+
+.labelCheck input{
+    margin-right: 8px; 
+    flex-shrink: 0;
+    width: 30px;
+
+}
+
+.labelCheck p{
+    margin: 0;
 }
