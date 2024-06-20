@@ -6,22 +6,9 @@ import { ProductContext } from '../context/ContextProvider';
 const FilterBar = ({ onHandleFilteredGames }) => {
     const { products, isLoading, error } = useContext(ProductContext);
     const [showFilter, setShowFilter] = useState(false)
-    const {products} = useContext(ProductContext)
     const gameStyleList = [...new Set(products.flatMap(product => product.gameStyle))]
     const [selectedStyles, setSelectedStyles] = useState([]);
-
-
-
-
-
-
-    // const handleStyleChange = (style) => {
-    //     setSelectedStyles(products.includes(style)
-    //         ? totalProducts.filter(s => s !== style)
-    //         : [...totalProducts, style])
-    //     onHandleFilteredGames(selectedStyles)
-    // }
-
+    
     useEffect(() => {
         onHandleFilteredGames(selectedStyles);
     }, [selectedStyles]);
