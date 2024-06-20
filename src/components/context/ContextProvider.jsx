@@ -8,6 +8,7 @@ const ContextProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [resetData, setResetData] = useState(false)
+  const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -42,8 +43,19 @@ const ContextProvider = ({ children }) => {
     fetchData();
   }, [resetData]);
 
+  const addToCart = (product) => {
+    const existingItemIndex = cartItems.findIndex((item) => item.id === product.id);
+    if (existingItemIndex !== -1) {
+      const updatedCartItems = [...cartItems];
+      updatedCartItems[existingItemIndex].quantity += 1;
+      setCartItems(updatedCartItems);
+    } else {
+      setCartItems((prevItems) => [...prevItems, { ...product, quantity: 1 }]);
+    }
+  };
+
   return (
-    <ProductContext.Provider value={{ products, isLoading, error }}>
+    <ProductContext.Provider value={{ products, isLoading, error, cartItems, addToCart, setCartItems }}>
       {children}
     </ProductContext.Provider>
   );
