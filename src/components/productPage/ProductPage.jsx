@@ -6,7 +6,7 @@ import FilterBar from '../filterBar/FilterBar';
 import {ProductContext} from '../context/ContextProvider'
 
 const ProductPage = () => {
-  const {products, isLoading, error} = useContext(ProductContext);
+  const {products, isLoading, error, addToCart} = useContext(ProductContext);
   const [gamesSlice, setGamesSlice] = useState(12);
   const [totalProducts, setTotalProducts] = useState(products)
 
@@ -45,7 +45,6 @@ const ProductPage = () => {
       setTotalProducts(filteredProducts)
     }
 
-
     
     
 
@@ -67,7 +66,11 @@ const ProductPage = () => {
                 className='imgCard'
               />
               <Card.Body>
-                <p className='overlay'>{singleGame.console}</p>
+                <div className='overlay'>
+                  <p>{singleGame.console}</p>
+                  <button className='addToCart' onClick={()=> addToCart(singleGame)}>AGREGAR AL CARRITO</button>
+                </div>
+
                 <ListGroup className="list-group-flush">
                   <ListGroup.Item className="textTitleCard">{singleGame.gameName}</ListGroup.Item>
                   <ListGroup.Item className="textTitleCard">${singleGame.price}</ListGroup.Item>
