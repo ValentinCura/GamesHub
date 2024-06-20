@@ -8,19 +8,7 @@ const FilterBar = ({ onHandleFilteredGames }) => {
     const [showFilter, setShowFilter] = useState(false)
     const gameStyleList = [...new Set(products.flatMap(product => product.gameStyle))]
     const [selectedStyles, setSelectedStyles] = useState([]);
-
-
-
-
-
-
-    // const handleStyleChange = (style) => {
-    //     setSelectedStyles(products.includes(style)
-    //         ? totalProducts.filter(s => s !== style)
-    //         : [...totalProducts, style])
-    //     onHandleFilteredGames(selectedStyles)
-    // }
-
+    
     useEffect(() => {
         onHandleFilteredGames(selectedStyles);
     }, [selectedStyles]);
