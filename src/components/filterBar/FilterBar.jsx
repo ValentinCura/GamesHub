@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './FilterBar.css'
 import { Form } from 'react-bootstrap'
+import { ProductContext } from '../context/ContextProvider'
 
-const FilterBar = ({ products, onHandleFilteredGames }) => {
+const FilterBar = ({ onHandleFilteredGames }) => {
     const [showFilter, setShowFilter] = useState(false)
+    const {products} = useContext(ProductContext)
     const gameStyleList = [...new Set(products.flatMap(product => product.gameStyle))]
     const [selectedStyles, setSelectedStyles] = useState([]);
     const [totalProducts, setTotalProducts] = useState([])
@@ -17,6 +19,7 @@ const FilterBar = ({ products, onHandleFilteredGames }) => {
         setSelectedStyles(totalProducts.includes(style)
             ? totalProducts.filter(s => s !== style)
             : [...totalProducts, style])
+        console.log(selectedStyles)
         onHandleFilteredGames(selectedStyles)
     }
 

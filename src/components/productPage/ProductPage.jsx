@@ -42,7 +42,7 @@ const ProductPage = () => {
   return (
     <div className='background-products'>
       <div className='searchContainer'>
-        <div className='filterBarDiv'><FilterBar products={products} onHandleFilteredGames={handleFilteredGames}/></div>
+        <div className='filterBarDiv'><FilterBar onHandleFilteredGames={handleFilteredGames}/></div>
         <div className='searchBarDiv'><SearchBar onSearch={handleSearch} /> </div>
       </div>
       <div className='cardContainer'>
