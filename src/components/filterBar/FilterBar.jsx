@@ -1,27 +1,38 @@
 import React, { useContext, useEffect, useState } from 'react'
 import './FilterBar.css'
 import { Form } from 'react-bootstrap'
-import { ProductContext } from '../context/ContextProvider'
+import { ProductContext } from '../context/ContextProvider';
 
 const FilterBar = ({ onHandleFilteredGames }) => {
+    const { products, isLoading, error } = useContext(ProductContext);
     const [showFilter, setShowFilter] = useState(false)
     const {products} = useContext(ProductContext)
     const gameStyleList = [...new Set(products.flatMap(product => product.gameStyle))]
     const [selectedStyles, setSelectedStyles] = useState([]);
-    const [totalProducts, setTotalProducts] = useState([])
 
-    useEffect(()=>{
-        setTotalProducts(products)
-    },[])
 
+
+
+
+
+    // const handleStyleChange = (style) => {
+    //     setSelectedStyles(products.includes(style)
+    //         ? totalProducts.filter(s => s !== style)
+    //         : [...totalProducts, style])
+    //     onHandleFilteredGames(selectedStyles)
+    // }
+
+    useEffect(() => {
+        onHandleFilteredGames(selectedStyles);
+    }, [selectedStyles]);
 
     const handleStyleChange = (style) => {
-        setSelectedStyles(totalProducts.includes(style)
-            ? totalProducts.filter(s => s !== style)
-            : [...totalProducts, style])
-        console.log(selectedStyles)
-        onHandleFilteredGames(selectedStyles)
-    }
+        if (selectedStyles.includes(style)) {
+            setSelectedStyles(selectedStyles.filter(s => s !== style));
+        } else {
+            setSelectedStyles([...selectedStyles, style]);
+        }
+    };
 
 
 
@@ -46,7 +57,7 @@ const FilterBar = ({ onHandleFilteredGames }) => {
                     <h3>GÉNERO</h3>
                     {gameStyleList.map(style => (
                         <label key={style} className='labelCheck'>
-                            <input type="checkbox" value={style} onChange={() => handleStyleChange(style)} />
+                            <input type="checkbox" value={style} onChange={() => handleStyleChange(style)} checked={selectedStyles.includes(style)} />
                             <p>{style}</p>
                         </label>
                     ))}

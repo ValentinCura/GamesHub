@@ -6,10 +6,16 @@ import FilterBar from '../filterBar/FilterBar';
 import {ProductContext} from '../context/ContextProvider'
 
 const ProductPage = () => {
+  const {products, isLoading, error, addToCart} = useContext(ProductContext);
   const [gamesSlice, setGamesSlice] = useState(12);
-  const {products, isLoading, error} = useContext(ProductContext);
+  const [totalProducts, setTotalProducts] = useState(products)
 
-  const gamesToShow = products.slice(0, gamesSlice);
+  
+
+  useEffect(()=>{
+    setTotalProducts(products.slice(0, gamesSlice));
+
+  },[gamesSlice])
 
   const handleShowMore = () => {
     setGamesSlice(products.length);
@@ -28,7 +34,7 @@ const ProductPage = () => {
         (product) =>
           product.gameName.toLowerCase().includes(searchTerm.toLowerCase())
       );
-      setProducts(filteredProducts);
+      setTotalProducts(filteredProducts);
     }
   };
     
@@ -36,8 +42,11 @@ const ProductPage = () => {
       const filteredProducts = products.filter(product =>
         gameStyles.every(style => product.gameStyle.includes(style))
       );
-      setProducts(filteredProducts)
+      setTotalProducts(filteredProducts)
     }
+
+    
+    
 
   return (
     <div className='background-products'>
@@ -49,7 +58,7 @@ const ProductPage = () => {
         {isLoading && <p>Loading products...</p>}
         {error && <p>Error: {error.message}</p>}
         {products.length > 0 && (
-          gamesToShow.map((singleGame) => (
+          totalProducts.map((singleGame) => (
             <Card key={singleGame.id} className='cardProductsCard'>
               <Card.Img
                 variant="top"
@@ -57,7 +66,11 @@ const ProductPage = () => {
                 className='imgCard'
               />
               <Card.Body>
-                <p className='overlay'>{singleGame.console}</p>
+                <div className='overlay'>
+                  <p>{singleGame.console}</p>
+                  <button className='addToCart' onClick={()=> addToCart(singleGame)}>AGREGAR AL CARRITO</button>
+                </div>
+
                 <ListGroup className="list-group-flush">
                   <ListGroup.Item className="textTitleCard">{singleGame.gameName}</ListGroup.Item>
                   <ListGroup.Item className="textTitleCard">${singleGame.price}</ListGroup.Item>
@@ -68,7 +81,7 @@ const ProductPage = () => {
         )}
       </div>
       <div className='buttonShow'>
-        {gamesToShow.length < products.length ? (
+        {totalProducts.length < products.length ? (
           <Button variant="dark" onClick={handleShowMore}>Mostrar Más</Button>
         ) : (
           <Button variant="dark" onClick={handleShowLess}>Mostrar Menos</Button>
