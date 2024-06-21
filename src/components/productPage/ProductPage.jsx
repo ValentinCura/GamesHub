@@ -3,19 +3,19 @@ import { Button, Card, ListGroup } from 'react-bootstrap';
 import './ProductPage.css'
 import SearchBar from '../searchBar/SearchBar';
 import FilterBar from '../filterBar/FilterBar';
-import {ProductContext} from '../context/ContextProvider'
+import { ProductContext } from '../context/ContextProvider'
 
 const ProductPage = () => {
-  const {products, isLoading, error, addToCart} = useContext(ProductContext);
+  const { products, isLoading, error, addToCart } = useContext(ProductContext);
   const [gamesSlice, setGamesSlice] = useState(12);
   const [totalProducts, setTotalProducts] = useState(products)
 
-  
 
-  useEffect(()=>{
+
+  useEffect(() => {
     setTotalProducts(products.slice(0, gamesSlice));
 
-  },[gamesSlice])
+  }, [gamesSlice, products])
 
   const handleShowMore = () => {
     setGamesSlice(products.length);
@@ -37,25 +37,31 @@ const ProductPage = () => {
       setTotalProducts(filteredProducts);
     }
   };
-    
-    const handleFilteredGames = (gameStyles) => {
-      const filteredProducts = products.filter(product =>
-        gameStyles.every(style => product.gameStyle.includes(style))
+
+  const handleFilteredGames = (gameStyles, console) => {
+    let filteredProducts = products
+    if (console.length > 0) {
+      filteredProducts = filteredProducts.filter(product =>
+        console.includes(product.console)
       );
-      setTotalProducts(filteredProducts)
     }
 
-    
-    
+    if (gameStyles.length > 0) {
+      filteredProducts = filteredProducts.filter(product =>
+        gameStyles.every(style => product.gameStyle.includes(style)))
+
+    }
+    setTotalProducts(filteredProducts)
+  }
 
   return (
     <div className='background-products'>
       <div className='searchContainer'>
-        <div className='filterBarDiv'><FilterBar onHandleFilteredGames={handleFilteredGames}/></div>
+        <div className='filterBarDiv'><FilterBar onHandleFilteredGames={handleFilteredGames} /></div>
         <div className='searchBarDiv'><SearchBar onSearch={handleSearch} /> </div>
       </div>
       <div className='cardContainer'>
-        {isLoading && <p>Loading products...</p>}
+        {isLoading && <p>Cargando productos...</p>}
         {error && <p>Error: {error.message}</p>}
         {products.length > 0 && (
           totalProducts.map((singleGame) => (
@@ -68,7 +74,7 @@ const ProductPage = () => {
               <Card.Body>
                 <div className='overlay'>
                   <p>{singleGame.console}</p>
-                  <button className='addToCart' onClick={()=> addToCart(singleGame)}>AGREGAR AL CARRITO</button>
+                  <button className='addToCart' onClick={() => addToCart(singleGame)}>AGREGAR AL CARRITO</button>
                 </div>
 
                 <ListGroup className="list-group-flush">
@@ -79,7 +85,11 @@ const ProductPage = () => {
             </Card>
           ))
         )}
+        {totalProducts.length === 0 && (
+          <h2>No hay productos</h2>
+        )}
       </div>
+
       <div className='buttonShow'>
         {totalProducts.length < products.length ? (
           <Button variant="dark" onClick={handleShowMore}>Mostrar Más</Button>

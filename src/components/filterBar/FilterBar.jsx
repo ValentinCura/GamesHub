@@ -8,10 +8,13 @@ const FilterBar = ({ onHandleFilteredGames }) => {
     const [showFilter, setShowFilter] = useState(false)
     const gameStyleList = [...new Set(products.flatMap(product => product.gameStyle))]
     const [selectedStyles, setSelectedStyles] = useState([]);
-    
+    const gameConsoleList = [...new Set(products.flatMap(product => product.console))]
+    const [selectedConsole, setSelectedConsole] = useState([])
+
     useEffect(() => {
-        onHandleFilteredGames(selectedStyles);
-    }, [selectedStyles]);
+        onHandleFilteredGames(selectedStyles, selectedConsole);
+
+    }, [selectedStyles, selectedConsole]);
 
     const handleStyleChange = (style) => {
         if (selectedStyles.includes(style)) {
@@ -19,7 +22,19 @@ const FilterBar = ({ onHandleFilteredGames }) => {
         } else {
             setSelectedStyles([...selectedStyles, style]);
         }
+        onHandleFilteredGames(selectedStyles, selectedConsole)
     };
+
+    const handleConsoleChange = (consoleType) => {
+        if (selectedConsole.includes(consoleType)) {
+            setSelectedConsole(selectedConsole.filter(c => c !== consoleType));
+        } else {
+            setSelectedConsole([...selectedConsole, consoleType]);
+        }
+        onHandleFilteredGames(selectedStyles, selectedConsole)
+    };
+
+
 
 
 
@@ -31,13 +46,13 @@ const FilterBar = ({ onHandleFilteredGames }) => {
 
             <Form className={`filterChecks ${showFilter ? 'slide-in' : 'slide-out'}`}>
                 <div>
-                    <h3>Consola</h3>
-                    <Form.Check // prettier-ignore
-                        type={'checkbox'}
-                        id={`default-`}
-                        label={`PC`}
-                    />
-
+                    <h3>CONSOLA</h3>
+                    {gameConsoleList.map(consoleType => (
+                        <label key={consoleType} className='labelCheck'>
+                            <input type="checkbox" value={consoleType} onChange={() => handleConsoleChange(consoleType)} checked={selectedConsole.includes(consoleType)} />
+                            <p>{consoleType}</p>
+                        </label>
+                    ))}
                 </div>
 
                 <div className='styleFilter'>
@@ -50,6 +65,8 @@ const FilterBar = ({ onHandleFilteredGames }) => {
                     ))}
 
                 </div>
+
+
 
 
             </Form>
