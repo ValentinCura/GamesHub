@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import './LayoutNav.css'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { useNavigate } from 'react-router-dom';
+import { ProductContext } from '../context/ContextProvider';
 
 const LayoutNav = () => {
     const [scrollYstate, setScrollYstate] = useState(0);
-    const [isLogin, setIsLogin] = useState(false);
+    const { isLoggedIn, user, loginUser } = useContext(ProductContext);
+
 
     useEffect(() => {
         const handleScroll = () => {
@@ -81,9 +83,19 @@ const LayoutNav = () => {
                 <li className="navbar-item navli2" onClick={handleBuysPage}>
                     <p><i className="bi bi-cart iconSize" /></p>
                 </li>
-                <li className="navbar-item navli2" onClick={handleLoginPage}>
-                    <p><i className="bi bi-person-circle iconSize" />Login</p>
-                </li>
+
+                {isLoggedIn ?
+                    (
+                        <li className="navbar-item navli2">
+                            <p>Hola, {user.username}</p>
+                        </li>
+                    ) :
+                    (
+                        <li className="navbar-item navli2" onClick={handleLoginPage}>
+                            <p><i className="bi bi-person-circle iconSize" />Login</p>
+                        </li>
+                    )}
+
             </ul>
         </nav>
     )

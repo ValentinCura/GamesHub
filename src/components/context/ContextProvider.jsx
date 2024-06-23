@@ -10,6 +10,7 @@ const ContextProvider = ({ children }) => {
   const [resetProducts, setResetProducts] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [user, setUser] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [resetUsers, setResetUsers] = useState(false);
   const [isLoadingUsers, setIsLoadingUsers] = useState(false);
   const [errorUsers, setErrorUsers] = useState(null);
@@ -35,7 +36,6 @@ const ContextProvider = ({ children }) => {
           ...product,
         })).sort((a, b) => b.id - a.id);
         setProducts(productMapped);
-        setFilteredProducts(productMapped); // Descomenta esta línea si quieres tener productos filtrados
       } catch (error) {
         console.error('Error fetching products:', error);
         setErrorProducts(error.message);
@@ -113,6 +113,7 @@ const ContextProvider = ({ children }) => {
       }
       const loggedInUser = await response.json();
       setUser(loggedInUser);
+      setIsLoggedIn(true);
       return loggedInUser;
     } catch (error) {
       throw new Error(error.message || 'Login failed');
@@ -151,6 +152,7 @@ const ContextProvider = ({ children }) => {
         setResetUsers,
         registerUser,
         loginUser,
+        isLoggedIn,
         logoutUser,
       }}>
       {children}
