@@ -1,49 +1,42 @@
-import React, { useRef, useState } from 'react'
+import React, { useContext, useRef, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 import './LoginPage.css'
 import { useNavigate } from 'react-router-dom';
+import { ProductContext } from '../context/ContextProvider';
 
 const LoginPage = () => {
-  const [errors, setErrors] = useState({
-    username: false,
-    password: false,
-  });
-
+  const { loginUser } =  useContext(ProductContext);
   const navigate = useNavigate()
-
-  const handleRegister = () => {
-    navigate("/register");
-}
-
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
 
-  const loginHandler = (e) => {
+  const handleRegister = () => {
+    navigate("/register");
+  }
+
+  const loginHandler = async (e) => {
     e.preventDefault();
-    if (!usernameRef.current.value) {
-      usernameRef.current.focus();
-      setErrors({ ...errors, username: true })
-      alert("Completaloooooooo");
-      return;
+    try {
+      const userData = await loginUser({
+        username: usernameRef.current.value,
+        password: passwordRef.current.value
+      });
+      console.log('User logged in:', userData);
+      navigate("/") 
+    } catch (error) {
+      console.error('Login error:', error);
     }
-    if (!passwordRef.current.value) {
-      passwordRef.current.focus();
-      setErrors({ ...errors, password: true })
-      alert("COMPLETA");
-      return;
-    }
-    navigate("/")
   }
 
   return (
     <div className='loginForm'>
       <Form onSubmit={loginHandler}>
         <h2>Iniciar Sesión</h2>
-        <div className="mb-3 groupinput" controlId="formBasicEmail">
-          <input type="text" ref={usernameRef} placeholder="Usuario" name="" id="" />
+        <div className="mb-3 groupinput" controlId="formBasicUsername">
+          <input type="text" ref={usernameRef} placeholder="Usuario"/>
         </div>
-        <div className="mb-3 groupinput" controlId="formBasicEmail">
-          <input type="text" ref={passwordRef} placeholder="Contraseña" name="" id="" />
+        <div className="mb-3 groupinput" controlId="formBasicPassword">
+          <input type="text" ref={passwordRef} placeholder="Contraseña"/>
           <a className='aText' href="">¿Olvidaste la contraseña?</a>
         </div>
         <Button variant="dark" type="submit" className='sessionButton' >
