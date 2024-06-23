@@ -2,7 +2,6 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import './App.css'
 import MainPage from './components/mainPage/MainPage'
 import Layout from './components/layout/Layout'
-import WishListPage from './components/wishListPage/WishListPage'
 import UserCenterPage from './components/userCenterPage/UserCenterPage'
 import Register from './components/registerPage/Register'
 import ProductPage from './components/productPage/ProductPage'
@@ -21,14 +20,6 @@ function App() {
       element: (
         <Layout>
           <MainPage />
-        </Layout>
-      ),
-    },
-    {
-      path: "/wish-list",
-      element: (
-        <Layout>
-          <WishListPage />
         </Layout>
       ),
     },
