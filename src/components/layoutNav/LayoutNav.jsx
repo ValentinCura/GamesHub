@@ -43,10 +43,6 @@ const LayoutNav = () => {
         navigate("/about-us");
     }
 
-    const handleWishListPage = () => {
-        navigate("/wish-list");
-    }
-
     const handleBuysPage = () => {
         navigate("/buys");
     }
@@ -80,9 +76,6 @@ const LayoutNav = () => {
                 </li>
                 <li className="navbar-item navli1" onClick={handleAboutUsPage}>
                     <p>Sobre Nosotros</p>
-                </li>
-                <li className="navbar-item navli1" onClick={handleWishListPage}>
-                    <p>Lista de Deseados</p>
                 </li>
             </ul>
             <ul>
