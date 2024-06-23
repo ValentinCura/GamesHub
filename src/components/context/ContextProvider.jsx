@@ -16,6 +16,13 @@ const ContextProvider = ({ children }) => {
   const [errorUsers, setErrorUsers] = useState(null);
 
   useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  },[])
+
+  useEffect(() => {
     const fetchProducts = async () => {
       setIsLoadingProducts(true);
       setErrorProducts(null);
@@ -46,6 +53,38 @@ const ContextProvider = ({ children }) => {
 
     fetchProducts();
   }, [resetProducts]);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      setIsLoadingUsers(true);
+      setErrorUsers(null);
+
+      try {
+        const response = await fetch('http://localhost:8000/users', {
+          headers: {
+            accept: 'application/json',
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const userData = await response.json();
+        const userMapped = userData.map((user) => ({
+          ...user,
+        })).sort((a, b) => b.id - a.id);
+        setUser(userMapped);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+        setErrorUsers(error.message);
+      } finally {
+        setIsLoadingUsers(false);
+      }
+    };
+
+    fetchUsers();
+  }, [resetUsers]);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -114,6 +153,7 @@ const ContextProvider = ({ children }) => {
       const loggedInUser = await response.json();
       setUser(loggedInUser);
       setIsLoggedIn(true);
+      localStorage.setItem('user', JSON.stringify(loggedInUser));
       return loggedInUser;
     } catch (error) {
       throw new Error(error.message || 'Login failed');
@@ -122,6 +162,8 @@ const ContextProvider = ({ children }) => {
 
   const logoutUser = () => {
     setUser(null);
+    setIsLoggedIn(false); 
+    localStorage.removeItem('user');
   };
 
   const addToCart = (product) => {
@@ -154,6 +196,7 @@ const ContextProvider = ({ children }) => {
         loginUser,
         isLoggedIn,
         logoutUser,
+        setIsLoggedIn,
       }}>
       {children}
     </ProductContext.Provider>
