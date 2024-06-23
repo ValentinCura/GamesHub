@@ -5,8 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { ProductContext } from '../context/ContextProvider';
 
 const LayoutNav = () => {
+    const [dropDownView, setDropDownView] = useState(false);
     const [scrollYstate, setScrollYstate] = useState(0);
-    const { isLoggedIn, user, loginUser } = useContext(ProductContext);
+    const { isLoggedIn, user, loginUser, logoutUser, setIsLoggedIn } = useContext(ProductContext);
 
 
     useEffect(() => {
@@ -59,8 +60,13 @@ const LayoutNav = () => {
     }
 
     const handleLogOut = () => {
-        setIsLogin(!isLogin);
+        setIsLoggedIn(false); 
+        logoutUser(); 
         navigate("/");
+    }
+
+    const handleDropDown = () => {
+        setDropDownView(!dropDownView);
     }
 
     return (
@@ -87,12 +93,20 @@ const LayoutNav = () => {
                 {isLoggedIn ?
                     (
                         <li className="navbar-item navli2">
-                            <p>Hola, {user.username}</p>
+                            <div className='infoUsers'>
+                                <p>Hola, {user.username}</p>
+                                <i className="bi bi-caret-down-fill" onClick={handleDropDown} />
+                            </div>
+                            {dropDownView && (
+                                <div className='userOptions'>
+                                    <p onClick={handleLogOut}>Cerrar sesion</p>
+                                </div>
+                            )}
                         </li>
                     ) :
                     (
                         <li className="navbar-item navli2" onClick={handleLoginPage}>
-                            <p><i className="bi bi-person-circle iconSize" />Login</p>
+                            <p><i className="bi bi-person-circle iconSize"/>Login</p>
                         </li>
                     )}
 
