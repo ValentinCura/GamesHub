@@ -40,7 +40,7 @@ const MainPage = () => {
               <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2933620/capsule_616x353.jpg?t=1718124560" />
               <div className='carContent'>
                 <h3>Call of Duty®: Black Ops 6</h3>
-                <p>YA DISPONIBLE: <i class="bi bi-playstation" /> <i className="bi bi-windows" /></p>
+                <p>YA DISPONIBLE: <i className="bi bi-playstation" /> <i className="bi bi-windows" /></p>
                 <p>ARS$ 105.500,12</p>
               </div>
             </div>
