@@ -20,7 +20,7 @@ const ContextProvider = ({ children }) => {
     if (storedUser) {
       setUser(JSON.parse(storedUser));
     }
-  },[])
+  }, [])
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -84,7 +84,7 @@ const ContextProvider = ({ children }) => {
     };
 
     fetchUsers();
-  }, [resetUsers]);
+  }, [resetUsers]);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -162,7 +162,7 @@ const ContextProvider = ({ children }) => {
 
   const logoutUser = () => {
     setUser(null);
-    setIsLoggedIn(false); 
+    setIsLoggedIn(false);
     localStorage.removeItem('user');
   };
 
@@ -176,6 +176,30 @@ const ContextProvider = ({ children }) => {
       setCartItems((prevItems) => [...prevItems, { ...product, quantity: 1 }]);
     }
   };
+
+  const addNewProduct = async (productData) => {
+    try {
+      const lastProductId = products.length > 0 ? products[0].id : 0;
+      const newProductId = lastProductId + 1;
+      const productDataId = { ...productData, id: newProductId };
+      const response = await fetch('http://localhost:8000/products', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(productDataId),
+      });
+      if (!response.ok) {
+        throw new Error('Add failed');
+      }
+      const newProduct = await response.json();
+      setProducts((prevProducts) => [newProduct, ...prevProducts]);
+      return newProduct;
+    } catch (error) {
+      throw new Error(error.message || 'Add failed');
+    }
+  };
+
 
   return (
     <ProductContext.Provider
@@ -197,6 +221,7 @@ const ContextProvider = ({ children }) => {
         isLoggedIn,
         logoutUser,
         setIsLoggedIn,
+        addNewProduct,
       }}>
       {children}
     </ProductContext.Provider>

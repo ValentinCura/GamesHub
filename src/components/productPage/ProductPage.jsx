@@ -4,9 +4,10 @@ import './ProductPage.css'
 import SearchBar from '../searchBar/SearchBar';
 import FilterBar from '../filterBar/FilterBar';
 import { ProductContext } from '../context/ContextProvider'
+import Abm from '../abm/Abm';
 
 const ProductPage = () => {
-  const { products, isLoading, error, addToCart } = useContext(ProductContext);
+  const { products, isLoading, error, addToCart, user, isLoggedIn } = useContext(ProductContext);
   const [gamesSlice, setGamesSlice] = useState(12);
   const [totalProducts, setTotalProducts] = useState(products)
 
@@ -89,7 +90,9 @@ const ProductPage = () => {
           <h2>No hay productos</h2>
         )}
       </div>
-
+      {isLoggedIn && (user.rol === 'admin' || user.rol === 'sisadmin') && (
+        <Abm />
+      )}     
       <div className='buttonShow'>
         {totalProducts.length < products.length ? (
           <Button variant="dark" onClick={handleShowMore}>Mostrar Más</Button>
