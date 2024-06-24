@@ -7,7 +7,7 @@ import { ProductContext } from '../context/ContextProvider';
 const LayoutNav = () => {
     const [dropDownView, setDropDownView] = useState(false);
     const [scrollYstate, setScrollYstate] = useState(0);
-    const { isLoggedIn, user, loginUser, logoutUser, setIsLoggedIn } = useContext(ProductContext);
+    const { isLoggedIn, user, logoutUser, setIsLoggedIn,username,userRole } = useContext(ProductContext);
 
 
     useEffect(() => {
@@ -56,13 +56,16 @@ const LayoutNav = () => {
     }
 
     const handleLogOut = () => {
-        setIsLoggedIn(false); 
-        logoutUser(); 
+        setIsLoggedIn(false);
+        logoutUser();
         navigate("/");
     }
 
     const handleDropDown = () => {
         setDropDownView(!dropDownView);
+    }
+    const handleUserCenter = () => {
+        navigate("/user-center")
     }
 
     return (
@@ -87,11 +90,16 @@ const LayoutNav = () => {
                     (
                         <li className="navbar-item navli2">
                             <div className='infoUsers'>
-                                <p>Hola, {user.username}</p>
+                                <p>Hola, {username}</p>
                                 <i className="bi bi-caret-down-fill" onClick={handleDropDown} />
                             </div>
                             {dropDownView && (
+
+
                                 <div className='userOptions'>
+                                    {userRole === 'sisadmin' &&
+                                        <p onClick={handleUserCenter}>Centro de Usuarios</p>
+                                    }
                                     <p onClick={handleLogOut}>Cerrar sesion</p>
                                 </div>
                             )}
@@ -99,7 +107,7 @@ const LayoutNav = () => {
                     ) :
                     (
                         <li className="navbar-item navli2" onClick={handleLoginPage}>
-                            <p><i className="bi bi-person-circle iconSize"/>Login</p>
+                            <p><i className="bi bi-person-circle iconSize" />Login</p>
                         </li>
                     )}
 

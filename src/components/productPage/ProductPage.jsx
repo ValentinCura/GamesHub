@@ -7,7 +7,7 @@ import { ProductContext } from '../context/ContextProvider'
 import Abm from '../abm/Abm';
 
 const ProductPage = () => {
-  const { products, isLoading, error, addToCart, user, isLoggedIn, updateProduct, deleteProduct } = useContext(ProductContext);
+  const { products, isLoading, error, addToCart, user, isLoggedIn, updateProduct, deleteProduct, userRole } = useContext(ProductContext);
   const [gamesSlice, setGamesSlice] = useState(12);
   const [totalProducts, setTotalProducts] = useState(products)
   const [formBM, setFormBM] = useState(false)
@@ -117,7 +117,7 @@ const ProductPage = () => {
               />
               <Card.Body>
                 <div className='overlay'>
-                  {isLoggedIn && (user.rol === 'admin' || user.rol === 'sisadmin') && (
+                  {isLoggedIn && (userRole === 'admin' || userRole === 'sisadmin') && (
                     <div>
                       <i className="bi bi-three-dots" onClick={handleBM}></i>
                       {formBM && (
@@ -145,7 +145,7 @@ const ProductPage = () => {
           <h2>No hay productos</h2>
         )}
       </div>
-      {isLoggedIn && (user.rol === 'admin' || user.rol === 'sisadmin') && (
+      {isLoggedIn && (userRole === 'admin' || userRole === 'sisadmin') && (
         <Abm />
       )}
       <div className='buttonShow'>
