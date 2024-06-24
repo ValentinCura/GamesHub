@@ -10,17 +10,35 @@ const ContextProvider = ({ children }) => {
   const [resetProducts, setResetProducts] = useState(false);
   const [cartItems, setCartItems] = useState([]);
   const [user, setUser] = useState(null);
+  const [allUser, setAllUsers] = useState([])
   const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [resetUsers, setResetUsers] = useState(false);
   const [isLoadingUsers, setIsLoadingUsers] = useState(false);
   const [errorUsers, setErrorUsers] = useState(null);
+  const [userRole, setUserRole] = useState('');
+  const [username, setUsername] = useState('')
+
+
 
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
-      setUser(JSON.parse(storedUser));
+      const parsedUser = JSON.parse(storedUser)
+      setUser(parsedUser);
+      setIsLoggedIn(true);
+      setUserRole(parsedUser.rol);
+      setUsername(parsedUser.username);
     }
   }, [])
+
+  const updateUserState = (loggedInUser) => {
+    setUser(loggedInUser);
+    setIsLoggedIn(true);
+    setUserRole(loggedInUser.rol);
+    setUsername(loggedInUser.username);
+  };
+
+
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -73,8 +91,9 @@ const ContextProvider = ({ children }) => {
         const userData = await response.json();
         const userMapped = userData.map((user) => ({
           ...user,
-        })).sort((a, b) => b.id - a.id);
+        }));
         setUser(userMapped);
+        setAllUsers(userMapped)
       } catch (error) {
         console.error('Error fetching users:', error);
         setErrorUsers(error.message);
@@ -86,37 +105,6 @@ const ContextProvider = ({ children }) => {
     fetchUsers();
   }, [resetUsers]);
 
-  useEffect(() => {
-    const fetchUsers = async () => {
-      setIsLoadingUsers(true);
-      setErrorUsers(null);
-
-      try {
-        const response = await fetch('http://localhost:8000/users', {
-          headers: {
-            accept: 'application/json',
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const userData = await response.json();
-        const userMapped = userData.map((user) => ({
-          ...user,
-        })).sort((a, b) => b.id - a.id);
-        setUser(userMapped);
-      } catch (error) {
-        console.error('Error fetching users:', error);
-        setErrorUsers(error.message);
-      } finally {
-        setIsLoadingUsers(false);
-      }
-    };
-
-    fetchUsers();
-  }, [resetUsers]);
 
   const registerUser = async (userData) => {
     try {
@@ -132,6 +120,7 @@ const ContextProvider = ({ children }) => {
       }
       const newUser = await response.json();
       setUser(newUser);
+      setAllUsers((prevUsers) => [...prevUsers, newUser]);
       return newUser;
     } catch (error) {
       throw new Error(error.message || 'Registration failed');
@@ -151,8 +140,7 @@ const ContextProvider = ({ children }) => {
         throw new Error('Login failed');
       }
       const loggedInUser = await response.json();
-      setUser(loggedInUser);
-      setIsLoggedIn(true);
+      updateUserState(loggedInUser);
       localStorage.setItem('user', JSON.stringify(loggedInUser));
       return loggedInUser;
     } catch (error) {
@@ -163,7 +151,26 @@ const ContextProvider = ({ children }) => {
   const logoutUser = () => {
     setUser(null);
     setIsLoggedIn(false);
+    setUserRole('');
+    setUsername('');
     localStorage.removeItem('user');
+  };
+
+  const deleteUser = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:8000/users/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Delete failed');
+      }
+      setAllUsers((prevUsers) => prevUsers.filter((singleUser) => singleUser.id !== id));
+    } catch (error) {
+      throw new Error(error.message || 'Delete failed');
+    }
   };
 
   const addToCart = (product) => {
@@ -254,6 +261,7 @@ const ContextProvider = ({ children }) => {
         addToCart,
         setCartItems,
         user,
+        allUser,
         isLoadingUsers,
         errorUsers,
         setResetProducts,
@@ -262,10 +270,13 @@ const ContextProvider = ({ children }) => {
         loginUser,
         isLoggedIn,
         logoutUser,
+        deleteUser,
         setIsLoggedIn,
         addNewProduct,
         updateProduct,
         deleteProduct,
+        username,
+        userRole,
       }}>
       {children}
     </ProductContext.Provider>

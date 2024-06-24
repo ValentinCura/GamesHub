@@ -1,0 +1,33 @@
+.userCenterBackground{
+    display: flex;
+    flex-direction: column;
+    background-image: url("../../assets/img/cardBg.jfif");
+    background-size: cover;
+    justify-content: center;
+    padding-top: 100px;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.userDiv{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    backdrop-filter: blur(2px);
+    background-color: rgba(48, 48, 48, 0.3);
+    margin: 40px;
+    border-radius: 15px;
+    width: 600px;
+    color: white;
+    gap: 10px;
+    padding: 20px;
+}
+
+.userDiv i {
+    cursor: pointer;
+}
+
+.userDiv i:hover{
+    color: red;
+}
