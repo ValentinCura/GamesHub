@@ -200,6 +200,48 @@ const ContextProvider = ({ children }) => {
     }
   };
 
+  const updateProduct = async (id, partialProductData) => {
+    try {
+      const response = await fetch(`http://localhost:8000/products/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(partialProductData),
+      });
+      if (!response.ok) {
+        throw new Error('Update failed');
+      }
+      const updatedProduct = await response.json();
+      setProducts((prevProducts) =>
+        prevProducts.map((product) =>
+          product.id === id ? { ...product, ...partialProductData } : product
+        )
+      );
+      return updatedProduct;
+    } catch (error) {
+      throw new Error(error.message || 'Update failed');
+    }
+  };
+
+  const deleteProduct = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:8000/products/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Delete failed');
+      }
+      setProducts((prevProducts) => prevProducts.filter((product) => product.id !== id));
+    } catch (error) {
+      throw new Error(error.message || 'Delete failed');
+    }
+  };
+
+
 
   return (
     <ProductContext.Provider
@@ -222,6 +264,8 @@ const ContextProvider = ({ children }) => {
         logoutUser,
         setIsLoggedIn,
         addNewProduct,
+        updateProduct,
+        deleteProduct,
       }}>
       {children}
     </ProductContext.Provider>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Button, Card, ListGroup } from 'react-bootstrap';
+import { Button, Card, Form, ListGroup } from 'react-bootstrap';
 import './ProductPage.css'
 import SearchBar from '../searchBar/SearchBar';
 import FilterBar from '../filterBar/FilterBar';
@@ -7,9 +7,14 @@ import { ProductContext } from '../context/ContextProvider'
 import Abm from '../abm/Abm';
 
 const ProductPage = () => {
-  const { products, isLoading, error, addToCart, user, isLoggedIn } = useContext(ProductContext);
+  const { products, isLoading, error, addToCart, user, isLoggedIn, updateProduct, deleteProduct } = useContext(ProductContext);
   const [gamesSlice, setGamesSlice] = useState(12);
   const [totalProducts, setTotalProducts] = useState(products)
+  const [formBM, setFormBM] = useState(false)
+  const [modifyForm, setModifyForm] = useState(false)
+  const [modifyProductData, setModifyProductData] = useState(null);
+  const [newPrice, setNewPrice] = useState(0)
+  const [newImage, setNewImage] = useState('')
 
 
 
@@ -55,6 +60,44 @@ const ProductPage = () => {
     setTotalProducts(filteredProducts)
   }
 
+  const handleBM = () => {
+    setFormBM(!formBM)
+  }
+
+  const modifyProduct = (product) => {
+    setModifyForm(!modifyForm)
+    setModifyProductData(product);
+    setNewPrice(product.price);
+    setNewImage(product.gameImgUrl);
+  }
+
+  const handleShowModify = () => {
+    setModifyForm(!modifyForm)
+  }
+
+  const handleNewPrice = (e) => {
+    setNewPrice(e.target.value)
+  }
+
+  const handleNewImage = (e) => {
+    setNewImage(e.target.value)
+  }
+
+  const onHandleModify = (e) => {
+    e.preventDefault()
+    const modifyData = {
+      price: newPrice,
+      gameImgUrl: newImage,
+    }
+    updateProduct(modifyProductData.id, modifyData);
+    setModifyForm(false);
+    setModifyProductData(null);
+
+  }
+
+
+
+
   return (
     <div className='background-products'>
       <div className='searchContainer'>
@@ -74,6 +117,18 @@ const ProductPage = () => {
               />
               <Card.Body>
                 <div className='overlay'>
+                  {isLoggedIn && (user.rol === 'admin' || user.rol === 'sisadmin') && (
+                    <div>
+                      <i className="bi bi-three-dots" onClick={handleBM}></i>
+                      {formBM && (
+                        <div>
+                          <button className='addToCart' onClick={() => deleteProduct(singleGame.id)}>ELIMINAR</button>
+                          <button className='addToCart' onClick={() => modifyProduct(singleGame)}>MODIFICAR</button>
+                        </div>
+                      )}
+                    </div>
+                  )}
+
                   <p>{singleGame.console}</p>
                   <button className='addToCart' onClick={() => addToCart(singleGame)}>AGREGAR AL CARRITO</button>
                 </div>
@@ -92,7 +147,7 @@ const ProductPage = () => {
       </div>
       {isLoggedIn && (user.rol === 'admin' || user.rol === 'sisadmin') && (
         <Abm />
-      )}     
+      )}
       <div className='buttonShow'>
         {totalProducts.length < products.length ? (
           <Button variant="dark" onClick={handleShowMore}>Mostrar Más</Button>
@@ -100,6 +155,24 @@ const ProductPage = () => {
           <Button variant="dark" onClick={handleShowLess}>Mostrar Menos</Button>
         )}
       </div>
+      {modifyForm &&
+        <div className='formModify'>
+          <i className="bi bi-x-lg" onClick={handleShowModify} />
+          <Form onSubmit={onHandleModify}>
+            <h2>Modificar producto</h2>
+            <div className="mb-3 inputModify" controlId="formBasicPrice">
+              <input type="number" placeholder="Nuevo Precio" onChange={handleNewPrice} />
+            </div>
+            <div className="mb-3 inputModify" controlId="formBasicImage">
+              <input type="text" placeholder="Nueva imagen" onChange={handleNewImage} />
+            </div>
+            <Button variant="dark" type="submit" >
+              Guardar cambios
+            </Button>
+          </Form>
+        </div>
+
+      }
     </div>
   );
 };
