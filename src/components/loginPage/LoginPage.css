@@ -35,7 +35,7 @@ form {
     color: black;
     border: none;
     transition: 500;
-    margin-top: 30px;
+    margin-top: 5px;
     transition: background-color 0.3s ease-in-out;
 }
 
@@ -100,4 +100,24 @@ a {
 .registerPage:hover {
     color: rgb(199, 199, 199);
 
+}
+
+.passInput {
+    display: flex;
+    position: relative;
+}
+
+.passInput i{
+    position:absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    right: 20px;
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    transition: color 0.3s ease-in-out;
+}
+
+.passInput i:hover{
+    color: rgb(199, 199, 199);
 }
