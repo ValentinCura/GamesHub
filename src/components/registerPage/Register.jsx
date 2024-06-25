@@ -41,14 +41,14 @@ const Register = () => {
     <div className='registerForm'>
       <Form onSubmit={registerHandler}>
         <h2>Registrarse</h2>
-        <div className="mb-3 groupInputReg" controlId="formBasicEmail">
-          <input type="email" ref={emailRef} placeholder="Email" name="" id=""  />
+        <div className="mb-3 groupInputReg">
+          <input type="email" ref={emailRef} placeholder="Email"/>
         </div>
-        <div className="mb-3 groupInputReg" controlId="formBasicUser">
-          <input type="text" ref={usernameRef} placeholder="Usuario" name="" id=""  />
+        <div className="mb-3 groupInputReg">
+          <input type="text" ref={usernameRef} placeholder="Usuario"/>
         </div>
-        <div className="mb-3 groupInputReg inputPass" controlId="formBasicPass">
-          <input type="password" ref={passwordRef} placeholder="Contraseña" name="" id=""  />
+        <div className="mb-3 groupInputReg inputPass" >
+          <input type="password" ref={passwordRef} placeholder="Contraseña"/>
           <i className={`bi ${showPass ? 'bi-eye-slash' : 'bi-eye'}`} onClick={handleShowPass} />
         </div>
         <Button variant="dark" type="submit" className='sessionButton' >

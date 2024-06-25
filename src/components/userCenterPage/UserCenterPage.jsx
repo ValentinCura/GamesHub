@@ -12,7 +12,7 @@ const UserCenterPage = () => {
 
   return (
     <div className='userCenterBackground'>
-      {isLoggedIn && userRole === 'sisadmin' ? (
+      {isLoggedIn && userRole === 'sisadmin' &&
         filteredUsers.length > 0 && (
           filteredUsers.map((singleUser) => (
             <div className='userDiv' key={singleUser.id}>
@@ -23,11 +23,7 @@ const UserCenterPage = () => {
             </div>
           ))
         )
-      ) : (
-          <div>
-            <img src="https://i.pinimg.com/564x/c7/ba/8f/c7ba8fcaea49141457aea3797fbea5a4.jpg" alt="" />
-          </div>
-      )}
+      }
     </div>
   );
 }
