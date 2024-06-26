@@ -1,9 +1,19 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
-import { Form } from 'react-router-dom'
+import { Form, useNavigate } from 'react-router-dom'
 import './BuysFormPage.css'
+import { useContext } from 'react'
+import { ProductContext } from '../context/ContextProvider'
 
 const BuysFormPage = () => {
+  const {setCartItems} = useContext(ProductContext)
+  const navigate = useNavigate()
+
+  const handleFinishBuy = () => {
+    setCartItems([])
+    navigate("/");
+  }
+  
   return (
     <div className='buysForm'>
       <Form>
@@ -18,7 +28,7 @@ const BuysFormPage = () => {
           <input type="text" placeholder="Numero de la tarjeta"/>
           <input type="password" placeholder="Codigo de seguridad"/>
         </div>
-        <Button variant="dark" type="submit" >
+        <Button variant="dark" type="submit" onClick={handleFinishBuy}>
           Finalizar compra
         </Button>
       </Form>

@@ -12,6 +12,8 @@ const AddProduct = () => {
     const [console, setConsole] = useState("");
     const [image, setImage] = useState("");
 
+
+
     const handleForm = () => {
         setShowForm(!showForm);
     }
@@ -58,14 +60,14 @@ const AddProduct = () => {
                 <Form onSubmit={onHandleNewProduct}>
                     <h2>Nuevo producto</h2>
                     <div className="mb-3 inputAbm">
-                        <input type="text" placeholder="Nombre del juego" onChange={handleGameName} />
+                        <input type="text" placeholder="Nombre del juego" onChange={handleGameName}  required/>
                     </div>
                     <div className="mb-3 inputAbm">
-                        <input type="text" placeholder="Genero" onChange={handleGameGenre} />
+                        <input type="text" placeholder="Genero" onChange={handleGameGenre} required/>
                     </div>
                     <div className="mb-3 inputAbm inputPriceConsole">
-                        <input type="number" placeholder="Precio" onChange={handlePrice}/>
-                        <input type="text" placeholder="Consola" onChange={handleConsole} />
+                        <input type="number" placeholder="Precio" onChange={handlePrice} required/>
+                        <input type="text" placeholder="Consola" onChange={handleConsole} required/>
                     </div>
                     <div className="mb-3 inputAbm">
                         <input type="text" placeholder="Imagen" onChange={handleImage}/>
