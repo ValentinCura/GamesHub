@@ -7,7 +7,6 @@ import Register from './components/registerPage/Register'
 import ProductPage from './components/productPage/ProductPage'
 import LoginPage from './components/loginPage/LoginPage'
 import BuysFormPage from './components/buysFormPage/BuysFormPage'
-import BuysRecordPage from './components/buysRecordPage/BuysRecordPage'
 import BuysPage from './components/buysPage/BuysPage'
 import AboutUsPage from './components/aboutUsPage/AboutUsPage'
 
@@ -60,14 +59,6 @@ function App() {
       element: (
         <Layout>
           <BuysFormPage />
-        </Layout>
-      ),
-    },
-    {
-      path: "/buys-records",
-      element: (
-        <Layout>
-          <BuysRecordPage />
         </Layout>
       ),
     },

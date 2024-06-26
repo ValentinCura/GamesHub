@@ -8,7 +8,7 @@ const LayoutNav = () => {
     const [dropDownView, setDropDownView] = useState(false);
     const [scrollYstate, setScrollYstate] = useState(0);
     const { isLoggedIn, user, logoutUser, setIsLoggedIn,username,userRole } = useContext(ProductContext);
-
+    const [menuActive, setMenuActive] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -47,10 +47,6 @@ const LayoutNav = () => {
         navigate("/buys");
     }
 
-    const handleBuysRecordsPage = () => {
-        navigate("/buys-records");
-    }
-
     const handleLoginPage = () => {
         navigate("/login");
     }
@@ -67,6 +63,10 @@ const LayoutNav = () => {
     const handleUserCenter = () => {
         navigate("/user-center")
     }
+
+    const toggleMenu = () => {
+        setMenuActive(!menuActive);
+    };
 
     return (
         <nav className="navbar">
@@ -100,6 +100,7 @@ const LayoutNav = () => {
                                     {userRole === 'sisadmin' &&
                                         <p onClick={handleUserCenter}>Centro de Usuarios</p>
                                     }
+                                    <hr />
                                     <p onClick={handleLogOut}>Cerrar sesion</p>
                                 </div>
                             )}
@@ -112,6 +113,40 @@ const LayoutNav = () => {
                     )}
 
             </ul>
+            <div className='hambMenu'>
+
+                <ul >
+                    <i className="bi bi-list" onClick={toggleMenu} />
+                </ul>
+                {menuActive &&
+                    <div className='hambList'>
+                        <p onClick={handleProductsPage}>Productos</p>
+                        <p onClick={handleAboutUsPage}>Sobre Nosotros</p>
+                        <p onClick={handleBuysPage}><i className="bi bi-cart iconSize" /></p>
+                        {isLoggedIn ?
+                            (
+                                <li className='liHamb'>
+                                    <div >
+                                        <p>Hola, {username}</p>
+                                        <i className="bi bi-caret-down-fill" onClick={handleDropDown} />
+                                    </div>
+                                    {dropDownView && (
+                                        <div>
+                                            {userRole === 'sisadmin' &&
+                                                <p onClick={handleUserCenter}>Centro de Usuarios</p>
+                                            }
+                                            <p onClick={handleLogOut}>Cerrar sesion</p>
+                                        </div>
+                                    )}
+                                </li>
+                            ) :
+                            (
+                                <p onClick={handleLoginPage}> <i className="bi bi-person-circle iconSize" />Login</p>
+                            )}
+
+                    </div>
+                }
+            </div>
         </nav>
     )
 }
