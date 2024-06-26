@@ -5,12 +5,13 @@ import SearchBar from '../searchBar/SearchBar';
 import FilterBar from '../filterBar/FilterBar';
 import { ProductContext } from '../context/ContextProvider'
 import AddProduct from '../addProduct/AddProduct';
-import { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
 import useFormatPrice from '../../hooks/useFormatPrice';
+import ImgPlaceholder from '../../assets/img/ImgPlaceholder.jpeg'
 
 
 const ProductPage = () => {
-  const { products, isLoading, error, addToCart, isLoggedIn, updateProduct, deleteProduct, userRole } = useContext(ProductContext);
+  const { products, isLoading, error, addToCart, isLoggedIn, userRole, setProducts } = useContext(ProductContext);
   const formatPrice = useFormatPrice();
   const [gamesSlice, setGamesSlice] = useState(12);
   const [totalProducts, setTotalProducts] = useState(products)
@@ -19,6 +20,54 @@ const ProductPage = () => {
   const [modifyProductData, setModifyProductData] = useState(null);
   const [newPrice, setNewPrice] = useState(0)
   const [newImage, setNewImage] = useState('')
+  const defaultImageUrl = ImgPlaceholder;
+
+
+  //funcion para modificar un producto mediante metodo patch de la fake api
+  const updateProduct = async (id, partialProductData) => {
+    try {
+      const response = await fetch(`http://localhost:8000/products/${id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(partialProductData),
+      });
+      if (!response.ok) {
+        throw new Error('Update failed');
+      }
+      const updatedProduct = await response.json();
+      setProducts((prevProducts) =>
+        prevProducts.map((product) =>
+          product.id === id ? { ...product, ...partialProductData } : product
+        )
+      );
+      toast.success('Producto modificado');
+      return updatedProduct;
+    } catch (error) {
+      throw new Error(error.message || 'Update failed');
+    }
+  };
+
+
+  //funcion para eliminar un producto mediante metodo delete de la fake api
+  const deleteProduct = async (id) => {
+    try {
+      const response = await fetch(`http://localhost:8000/products/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Delete failed');
+      }
+      setProducts((prevProducts) => prevProducts.filter((product) => product.id !== id));
+      toast.success('Producto eliminado');
+    } catch (error) {
+      throw new Error(error.message || 'Delete failed');
+    }
+  };
 
 
 
@@ -117,7 +166,8 @@ const ProductPage = () => {
             <Card key={singleGame.id} className='cardProductsCard'>
               <Card.Img
                 variant="top"
-                src={singleGame.gameImgUrl}
+                src={singleGame.gameImgUrl ? singleGame.gameImgUrl : defaultImageUrl}
+                onError={(e) => { e.target.src = defaultImageUrl; }}
                 className='imgCard'
               />
               <Card.Body>
