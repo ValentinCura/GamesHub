@@ -54,7 +54,7 @@ const LayoutNav = () => {
     const handleLogOut = () => {
         setIsLoggedIn(false);
         logoutUser();
-        navigate("/");
+        navigate("/login");
     }
 
     const handleDropDown = () => {

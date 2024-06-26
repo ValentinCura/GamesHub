@@ -5,9 +5,29 @@ import './Register.css'
 import { ProductContext } from '../context/ContextProvider';
 
 const Register = () => {
-  const { registerUser } = useContext(ProductContext);
+  const { setAllUsers } = useContext(ProductContext);
   const [showPass, setShowPass] = useState(false);
   const navigate = useNavigate()
+
+  const registerUser = async (userData) => {
+    try {
+      const response = await fetch('http://localhost:8000/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+      });
+      if (!response.ok) {
+        throw new Error('Registration failed');
+      }
+      const newUser = await response.json();
+      setAllUsers((prevUsers) => [...prevUsers, newUser]);
+      return newUser;
+    } catch (error) {
+      throw new Error(error.message || 'Registration failed');
+    }
+  };
 
   const handleLogin = () => {
     navigate("/login")

@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react'
 import { Button, Form } from 'react-bootstrap';
-import './Abm.css'
+import './AddProduct.css'
 import { ProductContext } from '../context/ContextProvider';
 
-const Abm = () => {
+const AddProduct = () => {
     const { addNewProduct } = useContext(ProductContext);
     const [showForm, setShowForm] = useState(false);
     const [gameName, setGameName] = useState("");
@@ -57,17 +57,17 @@ const Abm = () => {
             {showForm &&
                 <Form onSubmit={onHandleNewProduct}>
                     <h2>Nuevo producto</h2>
-                    <div className="mb-3 inputAbm" controlId="formGameName">
+                    <div className="mb-3 inputAbm">
                         <input type="text" placeholder="Nombre del juego" onChange={handleGameName} />
                     </div>
-                    <div className="mb-3 inputAbm" controlId="formGenre">
+                    <div className="mb-3 inputAbm">
                         <input type="text" placeholder="Genero" onChange={handleGameGenre} />
                     </div>
-                    <div className="mb-3 inputAbm inputPriceConsole" controlId="formPriceConsole">
+                    <div className="mb-3 inputAbm inputPriceConsole">
                         <input type="number" placeholder="Precio" onChange={handlePrice}/>
                         <input type="text" placeholder="Consola" onChange={handleConsole} />
                     </div>
-                    <div className="mb-3 inputAbm" controlId="formImage">
+                    <div className="mb-3 inputAbm">
                         <input type="text" placeholder="Imagen" onChange={handleImage}/>
                     </div>
                     <Button variant="dark" type="submit" >
@@ -79,4 +79,4 @@ const Abm = () => {
     )
 }
 
-export default Abm
+export default AddProduct

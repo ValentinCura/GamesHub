@@ -105,49 +105,6 @@ const ContextProvider = ({ children }) => {
     fetchUsers();
   }, [resetUsers]);
 
-
-  const registerUser = async (userData) => {
-    try {
-      const response = await fetch('http://localhost:8000/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData),
-      });
-      if (!response.ok) {
-        throw new Error('Registration failed');
-      }
-      const newUser = await response.json();
-      setUser(newUser);
-      setAllUsers((prevUsers) => [...prevUsers, newUser]);
-      return newUser;
-    } catch (error) {
-      throw new Error(error.message || 'Registration failed');
-    }
-  };
-
-  const loginUser = async (userData) => {
-    try {
-      const response = await fetch('http://localhost:8000/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userData),
-      });
-      if (!response.ok) {
-        throw new Error('Login failed');
-      }
-      const loggedInUser = await response.json();
-      updateUserState(loggedInUser);
-      localStorage.setItem('user', JSON.stringify(loggedInUser));
-      return loggedInUser;
-    } catch (error) {
-      throw new Error(error.message || 'Login failed');
-    }
-  };
-
   const logoutUser = () => {
     setUser(null);
     setIsLoggedIn(false);
@@ -266,8 +223,8 @@ const ContextProvider = ({ children }) => {
         errorUsers,
         setResetProducts,
         setResetUsers,
-        registerUser,
-        loginUser,
+        setAllUsers,
+        updateUserState,
         isLoggedIn,
         logoutUser,
         deleteUser,

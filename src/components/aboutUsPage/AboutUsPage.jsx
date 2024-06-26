@@ -17,12 +17,12 @@ const AboutUsPage = () => {
     <>
       <div className='background'>
         <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1172470/capsule_231x87.jpg?t=1717672601" className="img1 shadowPosition" />
-        <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2344520/capsule_231x87.jpg?t=1718138209" class="img2 shadowPosition" />
-        <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/570/capsule_231x87.jpg?t=1714502360" class="img3 shadowPosition" />
-        <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/capsule_231x87.jpg?t=1717530666" class="img4 shadowPosition" />
-        <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/359550/capsule_231x87.jpg?t=1716985808" class="img5 shadowPosition" />
-        <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2933620/capsule_231x87.jpg?t=1718124560" class="img6 shadowPosition" />
-        <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1085660/capsule_231x87_latam.jpg?t=1717530114" class="img7 shadowPosition" />
+        <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2344520/capsule_231x87.jpg?t=1718138209" className="img2 shadowPosition" />
+        <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/570/capsule_231x87.jpg?t=1714502360" className="img3 shadowPosition" />
+        <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1245620/capsule_231x87.jpg?t=1717530666" className="img4 shadowPosition" />
+        <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/359550/capsule_231x87.jpg?t=1716985808" className="img5 shadowPosition" />
+        <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2933620/capsule_231x87.jpg?t=1718124560" className="img6 shadowPosition" />
+        <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1085660/capsule_231x87_latam.jpg?t=1717530114" className="img7 shadowPosition" />
 
 
         <section className='aboutUs'>
