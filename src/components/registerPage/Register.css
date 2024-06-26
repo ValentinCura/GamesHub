@@ -116,3 +116,14 @@ a {
 .inputPass i:hover{
     color: rgb(199, 199, 199);
 }
+
+@media (max-width: 815px) {
+
+    .groupInputReg {
+        width: 400px;
+    }
+    .sessionButtonReg{
+        width: 400px;
+    }
+ 
+}

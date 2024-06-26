@@ -121,3 +121,13 @@ a {
 .passInput i:hover{
     color: rgb(199, 199, 199);
 }
+
+
+@media (max-width: 815px) {
+    .groupinput {
+        width: 400px;
+    }
+    .sessionButton{
+        width: 400px;
+    } 
+}

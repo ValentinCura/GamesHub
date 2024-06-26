@@ -37,3 +37,11 @@
     display: flex;
     gap: 5px;
 }
+
+
+@media (max-width: 768px) {
+    .inputAbm{
+        width: 300px;
+    }
+
+}

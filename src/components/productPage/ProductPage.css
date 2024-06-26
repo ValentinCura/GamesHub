@@ -149,3 +149,41 @@
 .formModify form{
     padding: 20px;
 }
+
+
+@media (max-width: 1200px) {
+    .cardContainer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        margin: 0px;
+        min-height: 100vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .cardContainer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+        position: relative;
+        margin: 0px;
+        min-height: 100vh;
+    }
+
+    .searchContainer {
+        display: flex;
+        color: white;
+    }
+
+    .searchBarDiv {
+        width: 300px;
+    }
+
+    .filterBarDiv {
+        z-index: 50;
+    }
+}

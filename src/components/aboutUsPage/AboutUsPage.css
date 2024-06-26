@@ -27,7 +27,7 @@
     right: 60%;
     width: 350px;
     height: 250px;
-    background: rgba(56, 110, 80, 0.3); 
+    background: rgba(56, 110, 80, 0.3);
     filter: blur(50px);
     transform: translate(-50%, -50%);
     border-radius: 50%;
@@ -70,24 +70,24 @@
     animation: bounce 1s infinite;
 }
 
-.visionMision{
+.visionMision {
     display: flex;
     justify-content: space-between;
     gap: 50px;
 }
 
-.texts{
+.texts {
     display: flex;
     flex-direction: column;
     text-align: justify;
 }
 
-.img1{
+.img1 {
     top: 20%;
     left: 80%;
 }
 
-.img2{
+.img2 {
     top: 55%;
     left: 85%;
     height: 82px;
@@ -95,7 +95,7 @@
 
 }
 
-.img3{
+.img3 {
     top: 80%;
     left: 75%;
     height: 68px;
@@ -103,14 +103,14 @@
 
 }
 
-.img4{
+.img4 {
     top: 15%;
     right: 68%;
 
 
 }
 
-.img5{
+.img5 {
     top: 50%;
     right: 83%;
     height: 65px;
@@ -118,7 +118,7 @@
 
 }
 
-.img6{
+.img6 {
     top: 76%;
     right: 70%;
     height: 80px;
@@ -126,19 +126,19 @@
 
 }
 
-.img7{
+.img7 {
     top: 25%;
     right: 90%;
     height: 50px;
     width: 130px;
 }
 
-.shadowPosition{
+.shadowPosition {
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.5);
     position: absolute;
 }
 
-.characteristics{
+.characteristics {
     background-color: #141414;
     height: 600px;
     width: 100%;
@@ -148,22 +148,22 @@
 
 }
 
-.charCards{
+.charCards {
     height: 345px;
     width: 280px;
     color: #f5f1ed;
     text-align: center;
 }
 
-.charCards h3{
+.charCards h3 {
     padding-top: 30px;
 }
 
-.charCards p{
+.charCards p {
     padding-top: 15px;
 }
 
-.charCards i{
+.charCards i {
     color: white;
     font-size: 40px;
     justify-content: center;
@@ -172,11 +172,11 @@
     display: flex;
 }
 
-.charCards:hover .iconDiv{
+.charCards:hover .iconDiv {
     background-color: #f3b025;
 }
 
-.iconDiv{
+.iconDiv {
     background-color: #252323;
     border-radius: 50%;
     justify-content: center;
@@ -188,5 +188,35 @@
     transition: background-color 0.4s ease-in-out;
 }
 
+@media (max-width: 1200px) {
+    .shadowPosition {
+        display: none;
+    }
 
+    .aboutUs {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 400px;
+        height: auto;
+    }
 
+    .aboutUs img {
+        height: 180px;
+    }
+
+    .texts {
+        display: flex;
+        text-align: center;
+    }
+
+    .characteristics {
+        padding-top: 50px;
+        height: auto;
+        flex-direction: column;
+    }
+
+    .background::before {
+        width: 200px;
+    }
+}

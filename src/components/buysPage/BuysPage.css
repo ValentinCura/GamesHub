@@ -109,3 +109,28 @@
 .eliminateX:hover {
     color: red;
 }
+
+
+@media (max-width: 815px){
+    .sectionCart{
+        flex-direction: column;
+    }
+    .cartItemStyle{
+        flex-direction: column;
+        width: 400px;
+        margin: 0;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+    }
+    .cartItemStyle img{
+        width: 360px;
+        height: 180px;
+        padding: 15px;
+    }
+
+    .totalsDiv{
+        margin: 0px;
+        width: 400px;
+        
+    }
+}
