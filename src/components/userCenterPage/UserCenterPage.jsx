@@ -2,10 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import './UserCenterPage.css';
 import { ProductContext } from '../context/ContextProvider';
 import UserModify from '../userModify/UserModify';
+import UserDelete from '../userDelete/UserDelete';
 
 const UserCenterPage = () => {
   const { isLoggedIn, allUser, deleteUser, userRole } = useContext(ProductContext);
   const [modifyUserId, setModifyUserId] = useState(null);
+  const [deleteUserId, setDeleteUserId] = useState(null);
   const filteredUsers = allUser.filter((singleUser) => singleUser.rol !== 'sisadmin');
   const [rolToSet, setRolToSet] = useState('')
   
@@ -14,7 +16,6 @@ const UserCenterPage = () => {
     setModifyUserId((prevUserId) => (prevUserId === id ? null : id));
     
   };
-
 
   return (
     <div className='userCenterBackground'>
@@ -29,6 +30,7 @@ const UserCenterPage = () => {
               className={modifyUserId === singleUser.id ? "bi bi-chevron-compact-up" : "bi bi-chevron-compact-down"}
               onClick={() => handleModifyUser(singleUser.id)}
             />
+            <UserDelete id = {singleUser.id}/>
             {modifyUserId === singleUser.id && <UserModify id = {singleUser.id}/>}
             
             

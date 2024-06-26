@@ -113,22 +113,7 @@ const ContextProvider = ({ children }) => {
     localStorage.removeItem('user');
   };
 
-  const deleteUser = async (id) => {
-    try {
-      const response = await fetch(`http://localhost:8000/users/${id}`, {
-        method: 'DELETE',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      });
-      if (!response.ok) {
-        throw new Error('Delete failed');
-      }
-      setAllUsers((prevUsers) => prevUsers.filter((singleUser) => singleUser.id !== id));
-    } catch (error) {
-      throw new Error(error.message || 'Delete failed');
-    }
-  };
+  
 
   const addToCart = (product) => {
     const existingItemIndex = cartItems.findIndex((item) => item.id === product.id);
@@ -227,7 +212,6 @@ const ContextProvider = ({ children }) => {
         updateUserState,
         isLoggedIn,
         logoutUser,
-        deleteUser,
         setIsLoggedIn,
         addNewProduct,
         updateProduct,

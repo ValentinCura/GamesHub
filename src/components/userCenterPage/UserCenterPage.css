@@ -18,15 +18,18 @@
     background-color: rgba(48, 48, 48, 0.3);
     margin: 40px;
     border-radius: 15px;
-    width: 600px;
+    width: 800px;
     color: white;
-    gap: 10px;
+    gap: 70px;
     padding: 20px;
+    height: 115px;
+    
 }
 
 .userDiv i {
     cursor: pointer;
 }
+
 
 .userDiv i:hover{
     color: red;
