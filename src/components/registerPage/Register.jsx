@@ -3,10 +3,16 @@ import { Button, Form } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
 import './Register.css'
 import { ProductContext } from '../context/ContextProvider';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Register = () => {
   const { setAllUsers } = useContext(ProductContext);
   const [showPass, setShowPass] = useState(false);
+  const [errors, setErrors] = useState({
+    email: false, 
+    username: false,
+    password: false
+  })
   const navigate = useNavigate()
 
   const registerUser = async (userData) => {
@@ -25,6 +31,7 @@ const Register = () => {
       setAllUsers((prevUsers) => [...prevUsers, newUser]);
       return newUser;
     } catch (error) {
+      toast.error('Nombre de usuario y/o email ya existente');
       throw new Error(error.message || 'Registration failed');
     }
   };
@@ -44,6 +51,24 @@ const Register = () => {
 
   const registerHandler = async (e) => {
     e.preventDefault();
+    if (!emailRef.current.value){
+      emailRef.current.focus();
+      setErrors({...errors, email:true})
+      toast.error('Complete todos los campos!');
+      return;
+    }
+    if (!usernameRef.current.value){
+      usernameRef.current.focus();
+      setErrors({...errors, username:true})
+      toast.error('Complete todos los campos!');
+      return;
+    }
+    if (!passwordRef.current.value){
+      passwordRef.current.focus();
+      setErrors({...errors, password:true})
+      toast.error('Complete todos los campos!');
+      return;
+    }
     try {
       const userData = await registerUser({
         email: emailRef.current.value,
@@ -59,6 +84,7 @@ const Register = () => {
 
   return (
     <div className='registerForm'>
+      <Toaster position='bottom-right' reverseOrder={false}/>
       <Form onSubmit={registerHandler}>
         <h2>Registrarse</h2>
         <div className="mb-3 groupInputReg">

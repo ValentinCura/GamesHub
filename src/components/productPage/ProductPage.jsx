@@ -5,6 +5,7 @@ import SearchBar from '../searchBar/SearchBar';
 import FilterBar from '../filterBar/FilterBar';
 import { ProductContext } from '../context/ContextProvider'
 import AddProduct from '../addProduct/AddProduct';
+import { Toaster } from 'react-hot-toast';
 
 
 const ProductPage = () => {
@@ -101,6 +102,7 @@ const ProductPage = () => {
 
   return (
     <div className='background-products'>
+      <Toaster position='bottom-right' reverseOrder={false} />
       <div className='searchContainer'>
         <div className='filterBarDiv'><FilterBar onHandleFilteredGames={handleFilteredGames} /></div>
         <div className='searchBarDiv'><SearchBar onSearch={handleSearch} /> </div>

@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import './BuysPage.css'
 import { ProductContext } from '../context/ContextProvider';
 import { useNavigate } from 'react-router-dom';
+import toast, { Toaster } from 'react-hot-toast';
 
 const BuysPage = () => {
   const { cartItems, setCartItems } = useContext(ProductContext);
@@ -24,6 +25,7 @@ const BuysPage = () => {
   const handleDeleteCartItem = (id) => {
     const updatedCartItems = cartItems.filter((item) => item.id !== id);
     setCartItems(updatedCartItems);
+    toast.success('Producto eliminado del carrito');
   };
 
   const handleIncreaseQuantity = (id) => {
@@ -51,6 +53,7 @@ const BuysPage = () => {
 
   return (
     <div className='cartPage'>
+      <Toaster position='bottom-right' reverseOrder={false} />
       <h2>TU CARRITO</h2>
       <section className='sectionCart'>
         <div>
