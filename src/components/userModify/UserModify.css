@@ -1,0 +1,28 @@
+.formModifyUser{
+
+    position: absolute;
+    right: 0px;
+    top: 120px;
+}
+.form-select {
+    width: 140px;
+    background-color: rgb(196, 201, 198);; /* Light background */
+    color: #ffffff; /* Dark text color */
+    border: 2px solid #ced4da; /* Border color */
+    border-radius: 4px; /* Rounded corners */
+    padding: 10px; /* Padding inside the select */
+    font-size: 16px; /* Font size */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transitions */
+  }
+  
+  .form-select:focus {
+    border-color: rgba(130, 209, 157, 0.3);; /* Border color on focus */
+    box-shadow: 0 0 0 0.2rem rgba(130, 209, 157, 0.3);; /* Box shadow on focus */
+  }
+  
+  .form-select option[disabled] {
+    color: #6c757d; /* Disabled option color */
+  }
+  .form-select:hover{
+    color: whitesmoke;
+  }

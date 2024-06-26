@@ -5,11 +5,33 @@ import { useNavigate } from 'react-router-dom';
 import { ProductContext } from '../context/ContextProvider';
 
 const LoginPage = () => {
-  const { loginUser } = useContext(ProductContext);
+  const { updateUserState } = useContext(ProductContext);
   const [showPassLogin, setShowPassLogin] = useState(false);
   const navigate = useNavigate()
   const usernameRef = useRef(null);
   const passwordRef = useRef(null);
+
+  const loginUser = async (userData) => {
+    try {
+      const response = await fetch('http://localhost:8000/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+      });
+      if (!response.ok) {
+        throw new Error('Login failed');
+      }
+      const loggedInUser = await response.json();
+      updateUserState(loggedInUser);
+      localStorage.setItem('user', JSON.stringify(loggedInUser));
+      return loggedInUser;
+    } catch (error) {
+      throw new Error(error.message || 'Login failed');
+    }
+  };
+
 
   const handleRegister = () => {
     navigate("/register");

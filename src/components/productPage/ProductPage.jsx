@@ -4,7 +4,8 @@ import './ProductPage.css'
 import SearchBar from '../searchBar/SearchBar';
 import FilterBar from '../filterBar/FilterBar';
 import { ProductContext } from '../context/ContextProvider'
-import Abm from '../abm/Abm';
+import AddProduct from '../addProduct/AddProduct';
+
 
 const ProductPage = () => {
   const { products, isLoading, error, addToCart, user, isLoggedIn, updateProduct, deleteProduct, userRole } = useContext(ProductContext);
@@ -146,7 +147,7 @@ const ProductPage = () => {
         )}
       </div>
       {isLoggedIn && (userRole === 'admin' || userRole === 'sisadmin') && (
-        <Abm />
+        <AddProduct />
       )}
       <div className='buttonShow'>
         {totalProducts.length < products.length ? (
@@ -160,10 +161,10 @@ const ProductPage = () => {
           <i className="bi bi-x-lg" onClick={handleShowModify} />
           <Form onSubmit={onHandleModify}>
             <h2>Modificar producto</h2>
-            <div className="mb-3 inputModify" controlId="formBasicPrice">
+            <div className="mb-3 inputModify" >
               <input type="number" placeholder="Nuevo Precio" onChange={handleNewPrice} />
             </div>
-            <div className="mb-3 inputModify" controlId="formBasicImage">
+            <div className="mb-3 inputModify" >
               <input type="text" placeholder="Nueva imagen" onChange={handleNewImage} />
             </div>
             <Button variant="dark" type="submit" >
