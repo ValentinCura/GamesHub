@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
 
 export const ProductContext = createContext();
 
@@ -36,6 +37,7 @@ const ContextProvider = ({ children }) => {
     setIsLoggedIn(true);
     setUserRole(loggedInUser.rol);
     setUsername(loggedInUser.username);
+    toast.success(`Bienvenido ${username}`);
   };
 
 
@@ -124,6 +126,7 @@ const ContextProvider = ({ children }) => {
     } else {
       setCartItems((prevItems) => [...prevItems, { ...product, quantity: 1 }]);
     }
+    toast.success(`${product.gameName} ha sido añadido al carrito`);
   };
 
   const addNewProduct = async (productData) => {
@@ -143,6 +146,7 @@ const ContextProvider = ({ children }) => {
       }
       const newProduct = await response.json();
       setProducts((prevProducts) => [newProduct, ...prevProducts]);
+      toast.success(`${newProduct.gameName} ha sido creado`);
       return newProduct;
     } catch (error) {
       throw new Error(error.message || 'Add failed');
@@ -167,6 +171,7 @@ const ContextProvider = ({ children }) => {
           product.id === id ? { ...product, ...partialProductData } : product
         )
       );
+      toast.success('Producto modificado');
       return updatedProduct;
     } catch (error) {
       throw new Error(error.message || 'Update failed');
@@ -185,6 +190,7 @@ const ContextProvider = ({ children }) => {
         throw new Error('Delete failed');
       }
       setProducts((prevProducts) => prevProducts.filter((product) => product.id !== id));
+      toast.success('Producto eliminado');
     } catch (error) {
       throw new Error(error.message || 'Delete failed');
     }
