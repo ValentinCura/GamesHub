@@ -6,10 +6,12 @@ import FilterBar from '../filterBar/FilterBar';
 import { ProductContext } from '../context/ContextProvider'
 import AddProduct from '../addProduct/AddProduct';
 import { Toaster } from 'react-hot-toast';
+import useFormatPrice from '../../hooks/useFormatPrice';
 
 
 const ProductPage = () => {
-  const { products, isLoading, error, addToCart, user, isLoggedIn, updateProduct, deleteProduct, userRole } = useContext(ProductContext);
+  const { products, isLoading, error, addToCart, isLoggedIn, updateProduct, deleteProduct, userRole } = useContext(ProductContext);
+  const formatPrice = useFormatPrice();
   const [gamesSlice, setGamesSlice] = useState(12);
   const [totalProducts, setTotalProducts] = useState(products)
   const [formBM, setFormBM] = useState(false)
@@ -138,7 +140,7 @@ const ProductPage = () => {
 
                 <ListGroup className="list-group-flush">
                   <ListGroup.Item className="textTitleCard">{singleGame.gameName}</ListGroup.Item>
-                  <ListGroup.Item className="textTitleCard">${singleGame.price}</ListGroup.Item>
+                  <ListGroup.Item className="textTitleCard">ARS$ {formatPrice(singleGame.price)}</ListGroup.Item>
                 </ListGroup>
               </Card.Body>
             </Card>
