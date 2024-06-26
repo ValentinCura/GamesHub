@@ -3,23 +3,18 @@ import './BuysPage.css'
 import { ProductContext } from '../context/ContextProvider';
 import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
+import useFormatPrice from '../../hooks/useFormatPrice';
 
 const BuysPage = () => {
   const { cartItems, setCartItems } = useContext(ProductContext);
+  const formatPrice = useFormatPrice();
   const navigate = useNavigate()
-
-  const formatPrice = (price) => {
-    return price.toLocaleString('es-AR', {
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2
-    });
-  };
 
   const calculateTotal = () => {
     if (cartItems && cartItems.length > 0) {
       return formatPrice(cartItems.reduce((total, item) => total + item.price * item.quantity, 0));
     }
-    return 0;
+    return formatPrice(0);
   };
 
   const handleDeleteCartItem = (id) => {
