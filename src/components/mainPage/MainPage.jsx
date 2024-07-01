@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useRef, useState } from 'react'
-import { Button, Carousel } from 'react-bootstrap'
+import React, {  useEffect, useRef, useState } from 'react'
+import { Carousel } from 'react-bootstrap'
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import './MainPage.css'
 import { useNavigate } from 'react-router-dom';

@@ -5,11 +5,9 @@ import UserModify from '../userModify/UserModify';
 import UserDelete from '../userDelete/UserDelete';
 
 const UserCenterPage = () => {
-  const { isLoggedIn, allUser, deleteUser, userRole } = useContext(ProductContext);
+  const { isLoggedIn, allUser,  userRole } = useContext(ProductContext);
   const [modifyUserId, setModifyUserId] = useState(null);
-  const [deleteUserId, setDeleteUserId] = useState(null);
   const filteredUsers = allUser.filter((singleUser) => singleUser.rol !== 'sisadmin');
-  const [rolToSet, setRolToSet] = useState('')
   
 
   const handleModifyUser = (id) => {

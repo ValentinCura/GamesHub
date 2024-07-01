@@ -108,6 +108,7 @@ const ContextProvider = ({ children }) => {
   }, [resetUsers]);
 
   const logoutUser = () => {
+    setCartItems([]);
     setUser(null);
     setIsLoggedIn(false);
     setUserRole('');

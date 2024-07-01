@@ -4,11 +4,14 @@ import { ProductContext } from '../context/ContextProvider';
 import { useNavigate } from 'react-router-dom';
 import toast, { Toaster } from 'react-hot-toast';
 import useFormatPrice from '../../hooks/useFormatPrice';
+import ImgPlaceholder from '../../assets/img/ImgPlaceholder.jpeg'
 
 const BuysPage = () => {
   const { cartItems, setCartItems } = useContext(ProductContext);
+  const defaultImageUrl = ImgPlaceholder;
   const formatPrice = useFormatPrice();
   const navigate = useNavigate()
+
 
   const calculateTotal = () => {
     if (cartItems && cartItems.length > 0) {
@@ -76,10 +79,9 @@ const BuysPage = () => {
           )}
         </div>
         <div className='totalsDiv'>
-          {calculateTotal() === 0 ? (
+          {cartItems.length === 0 ? (
 
             <>
-              <p>TOTAL DE PRODUCTOS: ARS$ {calculateTotal()} </p>
               <button onClick={handleBackToProd}>AGREGAR PRODUCTOS</button>
             </>
 

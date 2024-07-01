@@ -2,21 +2,22 @@ import React, { useState } from 'react'
 import "./SearchBar.css"
 const SearchBar = ({ onSearch }) => {
     const [searchTerm, setSearchTerm] = useState("");
-    const handleSearch = () => {
-        onSearch(searchTerm);
+    const handleSearch = (gameSearch) => {
+        onSearch(gameSearch);
+        setSearchTerm(gameSearch);
     };
     return (
         <>
-            <div className="mb-3 barinput" >
+            <div className="mb-3 barinput">
                 <input
                     type="text"
                     placeholder="Buscar"
                     name=""
                     id=""
                     value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)} />
+                    onChange={(e) => handleSearch(e.target.value)}/>
 
-                <i className="bi bi-search searchicon" onClick={handleSearch}></i>
+                <i className="bi bi-search searchicon"></i>
             </div>
 
         </>

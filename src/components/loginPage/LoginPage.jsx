@@ -6,7 +6,7 @@ import { ProductContext } from '../context/ContextProvider';
 import toast,{Toaster} from 'react-hot-toast';
 
 const LoginPage = () => {
-  const { username, updateUserState } = useContext(ProductContext);
+  const { updateUserState } = useContext(ProductContext);
   const [showPassLogin, setShowPassLogin] = useState(false);
   const navigate = useNavigate()
   const [errors, setErrors] = useState({

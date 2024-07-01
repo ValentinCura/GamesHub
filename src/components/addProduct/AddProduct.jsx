@@ -18,14 +18,21 @@ const AddProduct = () => {
         setShowForm(!showForm);
     }
 
-    const onHandleNewProduct = (e) =>{
+
+
+    const onHandleNewProduct = (e) => {
         e.preventDefault();
+        const capitalizeFirstLetter = (string) => {
+            return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+        }
+        const mapGameGenre = gameGenre.split(',').map(genre => capitalizeFirstLetter(genre.trim()));
+
         const productData = {
             gameName: gameName,
-            gameStyle: gameGenre,
+            gameStyle: mapGameGenre,
             price: price,
             console: console,
-            gameImgUrl:image,
+            gameImgUrl: image,
         }
         addNewProduct(productData);
     }
@@ -43,7 +50,7 @@ const AddProduct = () => {
     }
 
     const handleConsole = (e) => {
-        setConsole(e.target.value);
+        setConsole(e.target.value.toUpperCase());
     }
 
     const handleImage = (e) => {
@@ -52,25 +59,25 @@ const AddProduct = () => {
 
     return (
         <div className='formAbm'>
-            {!showForm ?(
-                <Button variant="dark" type="submit" onClick={handleForm}> Agregar productos</Button> 
+            {!showForm ? (
+                <Button variant="dark" type="submit" onClick={handleForm}> Agregar productos</Button>
             ) : (<Button variant="dark" type="submit" onClick={handleForm}> Ocultar</Button>)}
 
             {showForm &&
                 <Form onSubmit={onHandleNewProduct}>
                     <h2>Nuevo producto</h2>
                     <div className="mb-3 inputAbm">
-                        <input type="text" placeholder="Nombre del juego" onChange={handleGameName}  required/>
+                        <input type="text" placeholder="Nombre del juego" onChange={handleGameName} required />
                     </div>
                     <div className="mb-3 inputAbm">
-                        <input type="text" placeholder="Genero" onChange={handleGameGenre} required/>
+                        <input type="text" placeholder="Genero" onChange={handleGameGenre} required />
                     </div>
                     <div className="mb-3 inputAbm inputPriceConsole">
-                        <input type="number" placeholder="Precio" onChange={handlePrice} required/>
-                        <input type="text" placeholder="Consola" onChange={handleConsole} required/>
+                        <input type="number" placeholder="Precio" onChange={handlePrice} required />
+                        <input type="text" placeholder="Consola" onChange={handleConsole} required />
                     </div>
                     <div className="mb-3 inputAbm">
-                        <input type="text" placeholder="Imagen" onChange={handleImage}/>
+                        <input type="text" placeholder="Imagen" onChange={handleImage} />
                     </div>
                     <Button variant="dark" type="submit" >
                         Agregar producto
