@@ -21,9 +21,9 @@ const UserModify = ({id}) => {
         }
     };
 
-    const updateUser = async (id, partialUserData) => {
+    const updateUser = async (userId, partialUserData) => {
         try {
-          const response = await fetch(`http://localhost:8000/users/${id}`, {
+          const response = await fetch(`http://localhost:8000/users/${userId}`, {
             method: 'PATCH',
             headers: {
               'Content-Type': 'application/json',
@@ -61,5 +61,3 @@ const UserModify = ({id}) => {
 }
 
 export default UserModify
-
-//hacer el proptypes

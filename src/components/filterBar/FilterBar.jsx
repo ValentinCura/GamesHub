@@ -4,12 +4,12 @@ import { Form } from 'react-bootstrap'
 import { ProductContext } from '../context/ContextProvider';
 
 const FilterBar = ({ onHandleFilteredGames }) => {
-    const { products, isLoading, error } = useContext(ProductContext);
-    const [showFilter, setShowFilter] = useState(false)
-    const gameStyleList = [...new Set(products.flatMap(product => product.gameStyle))]
+    const { products } = useContext(ProductContext);
+    const [showFilter, setShowFilter] = useState(false);
+    const gameStyleList = [...new Set(products.flatMap(product => product.gameStyle))];
     const [selectedStyles, setSelectedStyles] = useState([]);
-    const gameConsoleList = [...new Set(products.flatMap(product => product.console))]
-    const [selectedConsole, setSelectedConsole] = useState([])
+    const gameConsoleList = [...new Set(products.flatMap(product => product.console))];
+    const [selectedConsole, setSelectedConsole] = useState([]);
 
     useEffect(() => {
         onHandleFilteredGames(selectedStyles, selectedConsole);
@@ -33,7 +33,6 @@ const FilterBar = ({ onHandleFilteredGames }) => {
         }
         onHandleFilteredGames(selectedStyles, selectedConsole)
     };
-
 
 
 

@@ -39,11 +39,10 @@ const ProductPage = () => {
       const updatedProduct = await response.json();
       setProducts((prevProducts) =>
         prevProducts.map((product) =>
-          product.id === id ? { ...product, ...partialProductData } : product
+          product.id === id ? { ...product, ...updatedProduct } : product
         )
       );
       toast.success('Producto modificado');
-      return updatedProduct;
     } catch (error) {
       throw new Error(error.message || 'Update failed');
     }
@@ -85,16 +84,11 @@ const ProductPage = () => {
   };
 
   const handleSearch = (searchTerm) => {
-    if (!searchTerm) {
-      setResetData(!resetData)
-    }
-    else {
-      const filteredProducts = products.filter(
-        (product) =>
-          product.gameName.toLowerCase().includes(searchTerm.toLowerCase())
-      );
-      setTotalProducts(filteredProducts);
-    }
+    const filteredProducts = products.filter(
+      (product) =>
+        product.gameName.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setTotalProducts(filteredProducts);
   };
 
   const handleFilteredGames = (gameStyles, console) => {
@@ -185,7 +179,7 @@ const ProductPage = () => {
                   )}
 
                   <p>{singleGame.console}</p>
-                  <button className='addToCart' onClick={() => addToCart(singleGame)}>AGREGAR AL CARRITO</button>
+                  {isLoggedIn && <button className='addToCart' onClick={() => addToCart(singleGame)}>AGREGAR AL CARRITO</button>}
                 </div>
 
                 <ListGroup className="list-group-flush">

@@ -7,7 +7,7 @@ import { ProductContext } from '../context/ContextProvider';
 const LayoutNav = () => {
     const [dropDownView, setDropDownView] = useState(false);
     const [scrollYstate, setScrollYstate] = useState(0);
-    const { isLoggedIn, user, logoutUser, setIsLoggedIn,username,userRole } = useContext(ProductContext);
+    const { isLoggedIn,  logoutUser, setIsLoggedIn,username,userRole } = useContext(ProductContext);
     const [menuActive, setMenuActive] = useState(false);
 
     useEffect(() => {
