@@ -66,7 +66,7 @@ const MainPage = () => {
             </div>
           </Carousel.Item>
         </Carousel>
-        <button className='productsButtton' onClick={handleViewAll}>VER TODOS</button>
+        <button className='productsButton' onClick={handleViewAll}>VER TODOS</button>
       </section>
     </div>
   )
