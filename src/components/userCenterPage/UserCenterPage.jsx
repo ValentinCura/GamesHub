@@ -3,6 +3,7 @@ import './UserCenterPage.css';
 import { ProductContext } from '../context/ContextProvider';
 import UserModify from '../userModify/UserModify';
 import UserDelete from '../userDelete/UserDelete';
+import NotFound from '../notFound/NotFound';
 
 const UserCenterPage = () => {
   const { isLoggedIn, allUser,  userRole } = useContext(ProductContext);
@@ -17,7 +18,7 @@ const UserCenterPage = () => {
 
   return (
     <div className='userCenterBackground'>
-      {isLoggedIn && userRole === 'sisadmin' && filteredUsers.length > 0 && (
+      {isLoggedIn && userRole === 'sisadmin' && filteredUsers.length > 0 ? (
         filteredUsers.map((singleUser) => (
           <div className='userDiv' key={singleUser.id}>
             <p>ID: {singleUser.id}</p>
@@ -35,7 +36,7 @@ const UserCenterPage = () => {
 
           </div>
         ))
-      )}
+      ):(<NotFound/>)}
     </div>
   );
 };

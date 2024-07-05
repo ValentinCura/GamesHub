@@ -9,6 +9,7 @@ import LoginPage from './components/loginPage/LoginPage'
 import BuysFormPage from './components/buysFormPage/BuysFormPage'
 import BuysPage from './components/buysPage/BuysPage'
 import AboutUsPage from './components/aboutUsPage/AboutUsPage'
+import NotFound from './components/notFound/NotFound'
 
 
 
@@ -78,6 +79,15 @@ function App() {
         </Layout>
       ),
     },
+    {
+      path: "/*",
+      element: (
+        <Layout>
+          <NotFound />
+        </Layout>
+      ),
+    },
+
   ])
 
   return <RouterProvider router={router} />
